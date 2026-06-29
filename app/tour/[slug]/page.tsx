@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
+import { ICONOS_CATEGORIA } from "@/lib/icons";
 
 export const revalidate = 3600;
 
@@ -34,9 +36,31 @@ export default async function TourPage({
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
-      <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
-        {tour.categoria}
-      </p>
+      {tour.fotos?.[0] ? (
+        <div className="relative mb-8 h-72 w-full overflow-hidden rounded-sm sm:h-96">
+          <Image
+            src={tour.fotos[0]}
+            alt={tour.nombre}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      ) : null}
+
+      <div className="flex items-center gap-2">
+        {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
+          <Image
+            src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
+            alt=""
+            width={32}
+            height={32}
+          />
+        ) : null}
+        <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
+          {tour.categoria}
+        </p>
+      </div>
       <h1 className="mt-2 font-display text-3xl text-fjord-900 sm:text-4xl">
         {tour.nombre}
       </h1>
@@ -79,7 +103,7 @@ export default async function TourPage({
         </>
       ) : null}
 
-      <a
+      
         href="/contacto"
         className="mt-10 inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
       >
