@@ -1,7 +1,14 @@
 import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
+import type { Locale } from "@/lib/i18n";
 
-export default async function Footer() {
+const ANIOS_TEXT: Record<Locale, (n: number) => string> = {
+  es: (n) => `${n} años navegando la Patagonia Aysén`,
+  en: (n) => `${n} years sailing Patagonia Aysén`,
+  fr: (n) => `${n} ans de navigation en Patagonie Aysén`,
+};
+
+export default async function Footer({ locale }: { locale: Locale }) {
   const supabase = createClient();
   const { data } = await supabase
     .from("info_general")
@@ -15,7 +22,7 @@ export default async function Footer() {
         <p className="font-display text-lg">Destino Patagonia</p>
         {data?.anios_experiencia ? (
           <p className="mt-1 text-glacier-200">
-            {data.anios_experiencia} años navegando la Patagonia Aysén
+            {ANIOS_TEXT[locale](data.anios_experiencia)}
           </p>
         ) : null}
         <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 font-mono text-xs">
