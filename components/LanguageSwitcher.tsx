@@ -12,12 +12,18 @@ function withoutLocalePrefix(pathname: string): string {
   return pathname;
 }
 
-export default function LanguageSwitcher({ locale }: { locale: Locale }) {
+export default function LanguageSwitcher({
+  locale,
+  className = "",
+}: {
+  locale: Locale;
+  className?: string;
+}) {
   const pathname = usePathname();
   const basePath = withoutLocalePrefix(pathname);
 
   return (
-    <ul className="flex gap-2 border-l border-white/20 pl-6 font-mono text-xs">
+    <ul className={`flex gap-2 font-mono text-xs ${className}`}>
       <li>
         <Link
           href={basePath}
