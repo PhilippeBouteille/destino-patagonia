@@ -1,25 +1,8 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-function detectLocale(pathname: string): "es" | "en" | "fr" {
-  if (pathname.startsWith("/en")) return "en";
-  if (pathname.startsWith("/fr")) return "fr";
-  return "es";
-}
-
 export async function middleware(request: NextRequest) {
-  const locale = detectLocale(request.nextUrl.pathname);
-
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-locale", locale);
-  requestHeaders.set("x-pathname", request.nextUrl.pathname);
-
-  let response = NextResponse.next({ request: { headers: requestHeaders } });
-
-  const isAdminPath = request.nextUrl.pathname.startsWith("/admin");
-  if (!isAdminPath) {
-    return response;
-  }
+  let response = NextResponse.next({ request: { headers: request.headers } });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -56,5 +39,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  matcher: ["/admin", "/admin/:path*"],
 };
