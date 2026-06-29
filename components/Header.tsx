@@ -12,8 +12,12 @@ export default function Header() {
   return (
     <header className="bg-fjord-900 text-ice-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <Link href="/" className="font-display text-xl tracking-wide">
-          Destino Patagonia
+        <Link href="/" className="flex items-center">
+          <img
+            src="https://destinopatagonia.cl/wp-content/uploads/2019/11/logo_web.png"
+            alt="Destino Patagonia"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
         <nav aria-label="Navegación principal">
           <ul className="flex gap-6 text-sm font-body">
