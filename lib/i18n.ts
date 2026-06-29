@@ -22,7 +22,23 @@ type DictKey =
   | "contacto_intro"
   | "telefono"
   | "email"
-  | "direccion";
+  | "direccion"
+  | "cookie_banner_text"
+  | "cookie_learn_more"
+  | "cookie_accept"
+  | "cookie_back"
+  | "privacy_title"
+  | "privacy_subtitle"
+  | "privacy_s1_title"
+  | "privacy_s1_text"
+  | "privacy_s2_title"
+  | "privacy_s2_text"
+  | "privacy_s3_title"
+  | "privacy_s3_text"
+  | "privacy_s4_title"
+  | "privacy_s4_text"
+  | "privacy_s5_title"
+  | "privacy_s5_text";
 
 const dict: Record<Locale, Record<DictKey, string>> = {
   es: {
@@ -47,6 +63,28 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     telefono: "Teléfono",
     email: "Email",
     direccion: "Dirección",
+    cookie_banner_text:
+      "Este sitio utiliza cookies técnicas esenciales para su funcionamiento. No utilizamos cookies de seguimiento ni publicidad. Al continuar navegando, aceptas su uso.",
+    cookie_learn_more: "Más información",
+    cookie_accept: "Entendido",
+    cookie_back: "← Volver",
+    privacy_title: "Política de Privacidad",
+    privacy_subtitle: "Última actualización: junio 2026",
+    privacy_s1_title: "¿Qué información recopilamos?",
+    privacy_s1_text:
+      "Este sitio no utiliza herramientas de análisis de terceros (Google Analytics, Meta Pixel, etc.) ni cookies de seguimiento. Las únicas cookies presentes son técnicas: la sesión de acceso al panel de administración y el registro de que has visto este aviso.",
+    privacy_s2_title: "¿Cómo usamos tus datos?",
+    privacy_s2_text:
+      "Si nos contactas por teléfono o correo electrónico, usamos esos datos únicamente para responder a tu solicitud. No los vendemos ni los compartimos con terceros.",
+    privacy_s3_title: "Cookies utilizadas",
+    privacy_s3_text:
+      "— Sesión del panel de administración (técnica, necesaria para el equipo de Destino Patagonia)\n— Consentimiento de este aviso (localStorage, sin expiración)\n\nNinguna de estas cookies identifica a los visitantes del sitio ni se comparte con terceros.",
+    privacy_s4_title: "Tus derechos",
+    privacy_s4_text:
+      "De acuerdo con la Ley 21.096 de Chile y el RGPD (si nos visitas desde la UE), tienes derecho a acceder, rectificar o eliminar tus datos personales. Para ejercer estos derechos, escríbenos a:",
+    privacy_s5_title: "Alojamiento y servicios técnicos",
+    privacy_s5_text:
+      "Este sitio está alojado en Vercel (vercel.com) y utiliza Supabase (supabase.com) como base de datos. Puedes consultar sus políticas de privacidad en sus respectivos sitios web.",
   },
   en: {
     nav_inicio: "Home",
@@ -70,6 +108,28 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     telefono: "Phone",
     email: "Email",
     direccion: "Address",
+    cookie_banner_text:
+      "This site uses essential technical cookies for its operation. We do not use tracking or advertising cookies. By continuing to browse, you accept their use.",
+    cookie_learn_more: "Learn more",
+    cookie_accept: "Got it",
+    cookie_back: "← Back",
+    privacy_title: "Privacy Policy",
+    privacy_subtitle: "Last updated: June 2026",
+    privacy_s1_title: "What information do we collect?",
+    privacy_s1_text:
+      "This site does not use third-party analytics tools (Google Analytics, Meta Pixel, etc.) or tracking cookies. The only cookies present are technical: the admin panel login session and a record that you've seen this notice.",
+    privacy_s2_title: "How do we use your data?",
+    privacy_s2_text:
+      "If you contact us by phone or email, we use that information only to respond to your request. We do not sell or share it with third parties.",
+    privacy_s3_title: "Cookies used",
+    privacy_s3_text:
+      "— Admin panel session (technical, needed by the Destino Patagonia team)\n— Consent for this notice (localStorage, no expiry)\n\nNone of these cookies identify site visitors or are shared with third parties.",
+    privacy_s4_title: "Your rights",
+    privacy_s4_text:
+      "Under Chile's Law 21.096 and the GDPR (if you visit us from the EU), you have the right to access, correct or delete your personal data. To exercise these rights, write to us at:",
+    privacy_s5_title: "Hosting and technical services",
+    privacy_s5_text:
+      "This site is hosted on Vercel (vercel.com) and uses Supabase (supabase.com) as its database. You can review their privacy policies on their respective websites.",
   },
   fr: {
     nav_inicio: "Accueil",
@@ -93,6 +153,28 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     telefono: "Téléphone",
     email: "Email",
     direccion: "Adresse",
+    cookie_banner_text:
+      "Ce site utilise des cookies techniques essentiels à son fonctionnement. Nous n'utilisons pas de cookies de suivi ni de publicité. En continuant à naviguer, vous acceptez leur utilisation.",
+    cookie_learn_more: "En savoir plus",
+    cookie_accept: "J'ai compris",
+    cookie_back: "← Retour",
+    privacy_title: "Politique de confidentialité",
+    privacy_subtitle: "Dernière mise à jour : juin 2026",
+    privacy_s1_title: "Quelles informations collectons-nous ?",
+    privacy_s1_text:
+      "Ce site n'utilise pas d'outils d'analyse tiers (Google Analytics, Meta Pixel, etc.) ni de cookies de suivi. Les seuls cookies présents sont techniques : la session de connexion au panneau d'administration et l'enregistrement du fait que vous avez vu cet avis.",
+    privacy_s2_title: "Comment utilisons-nous vos données ?",
+    privacy_s2_text:
+      "Si vous nous contactez par téléphone ou e-mail, nous utilisons ces informations uniquement pour répondre à votre demande. Nous ne les vendons ni ne les partageons avec des tiers.",
+    privacy_s3_title: "Cookies utilisés",
+    privacy_s3_text:
+      "— Session du panneau d'administration (technique, nécessaire à l'équipe de Destino Patagonia)\n— Consentement à cet avis (localStorage, sans expiration)\n\nAucun de ces cookies n'identifie les visiteurs du site ni n'est partagé avec des tiers.",
+    privacy_s4_title: "Vos droits",
+    privacy_s4_text:
+      "Conformément à la loi chilienne 21.096 et au RGPD (si vous nous visitez depuis l'UE), vous avez le droit d'accéder à vos données personnelles, de les rectifier ou de les supprimer. Pour exercer ces droits, écrivez-nous à :",
+    privacy_s5_title: "Hébergement et services techniques",
+    privacy_s5_text:
+      "Ce site est hébergé sur Vercel (vercel.com) et utilise Supabase (supabase.com) comme base de données. Vous pouvez consulter leurs politiques de confidentialité sur leurs sites respectifs.",
   },
 };
 
