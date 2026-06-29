@@ -27,9 +27,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ["var(--font-fraunces)"],
-        body: ["var(--font-inter)"],
-        mono: ["var(--font-mono)"],
+        display: ["var(--font-poppins)"],
+        body: ["var(--font-poppins)"],
+        mono: ["var(--font-poppins)"],
       },
     },
   },
