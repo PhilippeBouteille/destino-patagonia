@@ -103,7 +103,7 @@ export default async function TourPage({
         </>
       ) : null}
 
-      
+      <a
         href="/contacto"
         className="mt-10 inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
       >
