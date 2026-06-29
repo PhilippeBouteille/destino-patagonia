@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"],
+  variable: "--font-poppins",
+  weight: ["100", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -34,9 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body
-        className={`${fraunces.variable} ${inter.variable} ${mono.variable} font-body`}
-      >
+      <body className={`${poppins.variable} font-body`}>
         <Header />
         <main>{children}</main>
         <Footer />
