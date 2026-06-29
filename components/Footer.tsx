@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
 
 export default async function Footer() {
