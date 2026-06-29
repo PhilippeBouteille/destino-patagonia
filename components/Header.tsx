@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LOCALES, localePrefix, t, type Locale } from "@/lib/i18n";
+import { localePrefix, t, type Locale } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const NAV_ITEMS: { key: "nav_inicio" | "nav_aventuras" | "nav_logistica" | "nav_quienes_somos" | "nav_contacto"; path: string }[] = [
   { key: "nav_inicio", path: "" },
@@ -9,22 +10,7 @@ const NAV_ITEMS: { key: "nav_inicio" | "nav_aventuras" | "nav_logistica" | "nav_
   { key: "nav_contacto", path: "/contacto" },
 ];
 
-const LOCALE_LABEL: Record<Locale, string> = { es: "ES", en: "EN", fr: "FR" };
-
-function withoutLocalePrefix(pathname: string): string {
-  if (pathname.startsWith("/en")) return pathname.slice(3) || "/";
-  if (pathname.startsWith("/fr")) return pathname.slice(3) || "/";
-  return pathname;
-}
-
-export default function Header({
-  locale,
-  pathname,
-}: {
-  locale: Locale;
-  pathname: string;
-}) {
-  const basePath = withoutLocalePrefix(pathname);
+export default function Header({ locale }: { locale: Locale }) {
   const prefix = localePrefix(locale);
 
   return (
@@ -50,26 +36,7 @@ export default function Header({
               </li>
             ))}
           </ul>
-          <ul className="flex gap-2 border-l border-white/20 pl-6 font-mono text-xs">
-            <li>
-              <Link
-                href={basePath}
-                className={locale === "es" ? "text-glacier-400" : "hover:text-glacier-400"}
-              >
-                ES
-              </Link>
-            </li>
-            {LOCALES.map((l) => (
-              <li key={l}>
-                <Link
-                  href={`/${l}${basePath === "/" ? "" : basePath}`}
-                  className={locale === l ? "text-glacier-400" : "hover:text-glacier-400"}
-                >
-                  {LOCALE_LABEL[l]}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <LanguageSwitcher locale={locale} />
         </nav>
       </div>
     </header>
