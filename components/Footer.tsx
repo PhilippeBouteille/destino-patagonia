@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
@@ -47,6 +48,24 @@ export default async function Footer({ locale }: { locale: Locale }) {
               Facebook
             </a>
           ) : null}
+        </div>
+
+        {/* Logo Ruta de los Parques */}
+        <div className="mt-8 border-t border-fjord-700 pt-6">
+          <a
+            href="https://rutadelosparques.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+          >
+            <Image
+              src="https://destinopatagonia.cl/wp-content/uploads/2020/01/LOGO-ruta-de-los-parques-patagonia-180x161-1.png"
+              alt="Ruta de los Parques de la Patagonia"
+              width={90}
+              height={81}
+              unoptimized
+            />
+          </a>
         </div>
       </div>
     </footer>
