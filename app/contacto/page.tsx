@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
 
 export const revalidate = 3600;
