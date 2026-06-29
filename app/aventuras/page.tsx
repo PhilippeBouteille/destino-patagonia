@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
@@ -34,18 +35,30 @@ export default async function AventurasPage() {
           <Link
             key={tour.id}
             href={`/tour/${tour.slug}`}
-            className="flex flex-col gap-2 border-b border-ice-100 pb-6 transition hover:opacity-80 sm:flex-row sm:items-baseline sm:justify-between"
+            className="flex flex-col gap-4 border-b border-ice-100 pb-6 transition hover:opacity-80 sm:flex-row sm:items-center sm:justify-between"
           >
-            <div>
-              <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
-                {tour.categoria}
-              </p>
-              <h2 className="font-display text-2xl text-fjord-900">
-                {tour.nombre}
-              </h2>
-              <p className="mt-1 max-w-xl text-sm text-slate-500">
-                {tour.descripcion_corta}
-              </p>
+            <div className="flex gap-4 sm:items-center">
+              {tour.fotos?.[0] ? (
+                <div className="relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-sm">
+                  <Image
+                    src={tour.fotos[0]}
+                    alt={tour.nombre}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+              <div>
+                <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
+                  {tour.categoria}
+                </p>
+                <h2 className="font-display text-2xl text-fjord-900">
+                  {tour.nombre}
+                </h2>
+                <p className="mt-1 max-w-xl text-sm text-slate-500">
+                  {tour.descripcion_corta}
+                </p>
+              </div>
             </div>
             <p className="whitespace-nowrap font-mono text-sm text-fjord-700">
               {tour.duracion} · desde{" "}
