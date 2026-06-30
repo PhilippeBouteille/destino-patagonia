@@ -38,6 +38,7 @@ export default function HeroSlider() {
         alt=""
         fill
         priority={current === 0}
+        unoptimized
         className="object-cover"
       />
       {nextIdx !== null && (
@@ -46,6 +47,7 @@ export default function HeroSlider() {
           src={SLIDES[nextIdx]}
           alt=""
           fill
+          unoptimized
           className="object-cover transition-opacity"
           style={{
             opacity: fading ? 1 : 0,

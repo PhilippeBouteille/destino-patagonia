@@ -12,7 +12,7 @@ const PHOTOS = [
   "/images/DSCN4807.jpg",
   "/images/DSCN4808.jpg",
   "/images/DSCN4814.jpg",
-  "/images/DSCN4833.jpg",
+  "/images/DSCN4835.jpg",
   "/images/DSCN9327.jpg",
 ];
 
@@ -38,6 +38,7 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
               src={src}
               alt={`${altPrefix} ${i + 1}`}
               fill
+              unoptimized
               className="object-cover transition duration-300 hover:scale-105"
             />
           </button>
@@ -50,7 +51,6 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
           onClick={() => setLightbox(null)}
         >
-          {/* Image */}
           <div
             className="relative h-[85vh] w-[90vw] max-w-5xl"
             onClick={(e) => e.stopPropagation()}
@@ -59,11 +59,11 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
               src={PHOTOS[lightbox]}
               alt={`${altPrefix} ${lightbox + 1}`}
               fill
+              unoptimized
               className="object-contain"
             />
           </div>
 
-          {/* Fermer */}
           <button
             onClick={() => setLightbox(null)}
             className="absolute right-4 top-4 text-white/80 hover:text-white text-3xl leading-none"
@@ -72,7 +72,6 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
             ×
           </button>
 
-          {/* Précédent */}
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
             className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-4xl leading-none px-2"
@@ -81,7 +80,6 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
             ‹
           </button>
 
-          {/* Suivant */}
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-4xl leading-none px-2"
@@ -90,7 +88,6 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
             ›
           </button>
 
-          {/* Compteur */}
           <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm font-mono">
             {lightbox + 1} / {PHOTOS.length}
           </p>
