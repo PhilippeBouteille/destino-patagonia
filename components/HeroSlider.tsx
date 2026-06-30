@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const SLIDES = [
-  "/images/DSCN4820.jpg",
+  "/images/home-azul.jpg",
   "/images/DSCN3522.jpg",
 ];
 
