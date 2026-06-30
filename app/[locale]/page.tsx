@@ -4,17 +4,18 @@ import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
 import { ICONOS_CATEGORIA } from "@/lib/icons";
 import RouteDivider from "@/components/RouteDivider";
-import { pickField, pickArrayField, t, type Locale } from "@/lib/i18n";
+import HeroSlider from "@/components/HeroSlider";
+import { pickField, t, type Locale } from "@/lib/i18n";
 
 export const revalidate = 3600;
 
 const GALERIA = [
-  "https://destinopatagonia.cl/wp-content/uploads/2019/11/26.jpg",
-  "https://destinopatagonia.cl/wp-content/uploads/2019/11/IMG_20170908_123204290_HDR.jpg",
-  "https://destinopatagonia.cl/wp-content/uploads/2018/07/laguna-san-rafael-full-day-destino-patagonia-04.jpg",
-  "https://destinopatagonia.cl/wp-content/uploads/2018/07/laguna-san-rafael-full-day-destino-patagonia-01.jpg",
-  "https://destinopatagonia.cl/wp-content/uploads/2019/11/27.jpg",
-  "https://destinopatagonia.cl/wp-content/uploads/2019/11/DSCN4807.jpg",
+  "/images/26.jpg",
+  "/images/IMG_20170908_123204290_HDR.jpg",
+  "/images/laguna-san-rafael-full-day-destino-patagonia-04.jpg",
+  "/images/laguna-san-rafael-full-day-destino-patagonia-01.jpg",
+  "/images/27.jpg",
+  "/images/DSCN4807.jpg",
 ];
 
 async function getTours() {
@@ -38,14 +39,8 @@ export default async function LocaleInicioPage({
   return (
     <>
       <section className="relative flex min-h-[70vh] items-center overflow-hidden px-6 py-24 text-ice-50">
-        <Image
-          src="https://destinopatagonia.cl/wp-content/uploads/2019/11/home-azul.jpg"
-          alt="Sailing to Laguna San Rafael"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-fjord-900/70" />
+        <HeroSlider />
+        <div className="absolute inset-0 bg-fjord-900/60" />
         <div className="relative mx-auto max-w-4xl">
           <p className="font-mono text-sm uppercase tracking-widest text-glacier-400">
             {t(locale, "hero_kicker")}
