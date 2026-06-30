@@ -6,6 +6,7 @@ import { ICONOS_CATEGORIA } from "@/lib/icons";
 import RouteDivider from "@/components/RouteDivider";
 import HeroSlider from "@/components/HeroSlider";
 import PostalesGalerie from "@/components/PostalesGalerie";
+import ServiciosBandeau from "@/components/ServiciosBandeau";
 
 export const revalidate = 3600;
 
@@ -99,6 +100,10 @@ export default async function InicioPage() {
           ))}
         </div>
       </section>
+
+      <RouteDivider className="text-fjord-400" />
+
+      <ServiciosBandeau locale="es" />
 
       <RouteDivider className="text-fjord-400" />
 
