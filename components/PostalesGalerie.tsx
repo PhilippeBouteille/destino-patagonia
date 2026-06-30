@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
 
 const PHOTOS = [
   "/images/26.jpg",
@@ -18,6 +17,30 @@ const PHOTOS = [
 
 export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  const updateArrows = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanPrev(el.scrollLeft > 4);
+    setCanNext(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  };
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateArrows, { passive: true });
+    updateArrows();
+    return () => el.removeEventListener("scroll", updateArrows);
+  }, []);
+
+  const scroll = (dir: "prev" | "next") => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir === "next" ? 400 : -400, behavior: "smooth" });
+  };
 
   const prev = () =>
     setLightbox((i) => (i === null ? null : (i - 1 + PHOTOS.length) % PHOTOS.length));
@@ -26,23 +49,52 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
 
   return (
     <>
-      {/* Grille */}
-      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {PHOTOS.map((src, i) => (
+      {/* Carrousel pleine largeur */}
+      <div className="relative mt-8 w-full">
+        {/* Flèche gauche */}
+        {canPrev && (
           <button
-            key={src}
-            onClick={() => setLightbox(i)}
-            className="relative aspect-[4/3] overflow-hidden rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-glacier-400"
+            onClick={() => scroll("prev")}
+            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow hover:bg-white text-fjord-900 text-xl"
+            aria-label="Anterior"
           >
-            <Image
-              src={src}
-              alt={`${altPrefix} ${i + 1}`}
-              fill
-              unoptimized
-              className="object-cover transition duration-300 hover:scale-105"
-            />
+            ‹
           </button>
-        ))}
+        )}
+
+        {/* Piste de défilement */}
+        <div
+          ref={trackRef}
+          className="flex gap-2 overflow-x-auto scroll-smooth"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {PHOTOS.map((src, i) => (
+            <button
+              key={src}
+              onClick={() => setLightbox(i)}
+              className="shrink-0 overflow-hidden focus:outline-none"
+              style={{ height: "280px", width: "calc((100vw - 16px) / 3)" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt={`${altPrefix} ${i + 1}`}
+                className="h-full w-full object-cover transition duration-300 hover:scale-105"
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Flèche droite */}
+        {canNext && (
+          <button
+            onClick={() => scroll("next")}
+            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow hover:bg-white text-fjord-900 text-xl"
+            aria-label="Siguiente"
+          >
+            ›
+          </button>
+        )}
       </div>
 
       {/* Lightbox */}
@@ -55,12 +107,11 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
             className="relative h-[85vh] w-[90vw] max-w-5xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={PHOTOS[lightbox]}
               alt={`${altPrefix} ${lightbox + 1}`}
-              fill
-              unoptimized
-              className="object-contain"
+              className="h-full w-full object-contain"
             />
           </div>
 
@@ -74,7 +125,7 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
 
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-4xl leading-none px-2"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-5xl leading-none px-2"
             aria-label="Anterior"
           >
             ‹
@@ -82,7 +133,7 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
 
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-4xl leading-none px-2"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-5xl leading-none px-2"
             aria-label="Siguiente"
           >
             ›

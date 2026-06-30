@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const SLIDES = [
   "/images/DSCN4820.jpg",
@@ -32,23 +31,20 @@ export default function HeroSlider() {
 
   return (
     <div className="absolute inset-0">
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         key={current}
         src={SLIDES[current]}
         alt=""
-        fill
-        priority={current === 0}
-        unoptimized
-        className="object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       {nextIdx !== null && (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
           key={`next-${nextIdx}`}
           src={SLIDES[nextIdx]}
           alt=""
-          fill
-          unoptimized
-          className="object-cover transition-opacity"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity"
           style={{
             opacity: fading ? 1 : 0,
             transitionDuration: `${TRANSITION_MS}ms`,
