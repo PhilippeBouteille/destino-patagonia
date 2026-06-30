@@ -39,7 +39,8 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
   const scroll = (dir: "prev" | "next") => {
     const el = trackRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir === "next" ? 400 : -400, behavior: "smooth" });
+    const photoWidth = el.clientWidth / 5;
+    el.scrollBy({ left: dir === "next" ? photoWidth * 2 : -photoWidth * 2, behavior: "smooth" });
   };
 
   const prev = () =>
@@ -49,31 +50,32 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
 
   return (
     <>
-      {/* Carrousel pleine largeur */}
-      <div className="relative mt-8 w-full">
+      {/* Carrousel pleine largeur — 5 photos visibles */}
+      <div className="relative mt-8 -mx-6 lg:-mx-0">
+
         {/* Flèche gauche */}
         {canPrev && (
           <button
             onClick={() => scroll("prev")}
-            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow hover:bg-white text-fjord-900 text-xl"
+            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow hover:bg-white text-fjord-900 text-2xl"
             aria-label="Anterior"
           >
             ‹
           </button>
         )}
 
-        {/* Piste de défilement */}
+        {/* Piste */}
         <div
           ref={trackRef}
-          className="flex gap-2 overflow-x-auto scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="flex overflow-x-auto"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none", gap: "2px" }}
         >
           {PHOTOS.map((src, i) => (
             <button
               key={src}
               onClick={() => setLightbox(i)}
               className="shrink-0 overflow-hidden focus:outline-none"
-              style={{ height: "280px", width: "calc((100vw - 16px) / 3)" }}
+              style={{ height: "360px", width: "20vw", minWidth: "180px" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -89,7 +91,7 @@ export default function PostalesGalerie({ altPrefix }: { altPrefix: string }) {
         {canNext && (
           <button
             onClick={() => scroll("next")}
-            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow hover:bg-white text-fjord-900 text-xl"
+            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow hover:bg-white text-fjord-900 text-2xl"
             aria-label="Siguiente"
           >
             ›
