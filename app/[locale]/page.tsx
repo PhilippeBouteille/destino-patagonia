@@ -5,18 +5,10 @@ import type { Tour } from "@/lib/types";
 import { ICONOS_CATEGORIA } from "@/lib/icons";
 import RouteDivider from "@/components/RouteDivider";
 import HeroSlider from "@/components/HeroSlider";
+import PostalesGalerie from "@/components/PostalesGalerie";
 import { pickField, t, type Locale } from "@/lib/i18n";
 
 export const revalidate = 3600;
-
-const GALERIA = [
-  "/images/26.jpg",
-  "/images/IMG_20170908_123204290_HDR.jpg",
-  "/images/laguna-san-rafael-full-day-destino-patagonia-04.jpg",
-  "/images/laguna-san-rafael-full-day-destino-patagonia-01.jpg",
-  "/images/27.jpg",
-  "/images/DSCN4807.jpg",
-];
 
 async function getTours() {
   const supabase = createClient();
@@ -40,7 +32,7 @@ export default async function LocaleInicioPage({
     <>
       <section className="relative flex min-h-[70vh] items-center overflow-hidden px-6 py-24 text-ice-50">
         <HeroSlider />
-        <div className="absolute inset-0 bg-fjord-900/60" />
+        <div className="absolute inset-0 bg-fjord-900/40" />
         <div className="relative mx-auto max-w-4xl">
           <p className="font-mono text-sm uppercase tracking-widest text-glacier-400">
             {t(locale, "hero_kicker")}
@@ -119,18 +111,7 @@ export default async function LocaleInicioPage({
         <h2 className="font-display text-2xl text-fjord-900">
           {t(locale, "postales")}
         </h2>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {GALERIA.map((src) => (
-            <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-sm">
-              <Image
-                src={src}
-                alt="Destino Patagonia adventure"
-                fill
-                className="object-cover transition hover:scale-105"
-              />
-            </div>
-          ))}
-        </div>
+        <PostalesGalerie altPrefix="Destino Patagonia" />
       </section>
     </>
   );
