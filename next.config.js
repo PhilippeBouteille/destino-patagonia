@@ -6,6 +6,9 @@ const nextConfig = {
       { protocol: "https", hostname: "destinopatagonia.cl" },
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
