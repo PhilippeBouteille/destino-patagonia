@@ -3,12 +3,6 @@ import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
-const ANIOS_TEXT: Record<Locale, (n: number) => string> = {
-  es: (n) => `${n} años navegando la Patagonia Aysén`,
-  en: (n) => `${n} years sailing Patagonia Aysén`,
-  fr: (n) => `${n} ans de navigation en Patagonie Aysén`,
-};
-
 const COPYRIGHT_PREFIX: Record<Locale, string> = {
   es: "© 2012–2026 Destino Patagonia",
   en: "© 2012–2026 Destino Patagonia",
@@ -46,14 +40,9 @@ export default async function Footer({ locale }: { locale: Locale }) {
 
           {/* Infos de contacto */}
           <div className="flex-1 font-body text-sm">
-            {data?.direccion ? (
-              <p className="text-glacier-200">{data.direccion}</p>
-            ) : null}
-            {data?.anios_experiencia ? (
-              <p className="mt-1 text-ice-100/70">
-                {ANIOS_TEXT[locale](data.anios_experiencia)}
-              </p>
-            ) : null}
+            <p className="text-glacier-200">
+              Puerto Río Tranquilo - Región de Aysén
+            </p>
 
             <div className="mt-4 flex flex-col items-center gap-2 font-mono text-xs sm:items-start">
               {data?.telefono ? (
