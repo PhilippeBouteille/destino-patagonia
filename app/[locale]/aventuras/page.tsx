@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
+import { ICONOS_CATEGORIA } from "@/lib/icons";
 import { pickField, t, type Locale } from "@/lib/i18n";
 
 export const revalidate = 3600;
@@ -49,9 +50,19 @@ export default async function LocaleAventurasPage({
                 </div>
               ) : null}
               <div>
-                <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
-                  {tour.categoria}
-                </p>
+                <div className="flex items-center gap-2">
+                  {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
+                    <Image
+                      src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
+                      alt=""
+                      width={20}
+                      height={20}
+                    />
+                  ) : null}
+                  <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
+                    {tour.categoria}
+                  </p>
+                </div>
                 <h2 className="font-display text-2xl text-fjord-900">
                   {pickField(tour, "nombre", locale)}
                 </h2>
