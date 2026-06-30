@@ -18,11 +18,11 @@ export default function Header({ locale }: { locale: Locale }) {
   const prefix = localePrefix(locale);
 
   return (
-    <header className="relative bg-fjord-900 text-ice-50">
+    <header className="sticky top-0 z-50 bg-fjord-900 text-ice-50 shadow-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <Link href={prefix || "/"} className="flex items-center" onClick={() => setOpen(false)}>
           <img
-            src="https://destinopatagonia.cl/wp-content/uploads/2019/11/logo_web.png"
+            src="/images/logo_web.png"
             alt="Destino Patagonia"
             className="h-10 w-auto object-contain"
           />
