@@ -19,53 +19,70 @@ export default async function Footer({ locale }: { locale: Locale }) {
 
   return (
     <footer className="bg-fjord-900 text-ice-100">
-      <div className="mx-auto max-w-6xl px-6 py-10 text-sm font-body">
-        <p className="font-display text-lg">Destino Patagonia</p>
-        {data?.anios_experiencia ? (
-          <p className="mt-1 text-glacier-200">
-            {ANIOS_TEXT[locale](data.anios_experiencia)}
-          </p>
-        ) : null}
-        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 font-mono text-xs">
-          {data?.telefono ? <span>{data.telefono}</span> : null}
-          {data?.email ? <span>{data.email}</span> : null}
-          {data?.direccion ? <span>{data.direccion}</span> : null}
-        </div>
-        <div className="mt-4 flex gap-4">
-          {data?.redes_sociales?.instagram ? (
-            <a
-              href={data.redes_sociales.instagram}
-              className="hover:text-glacier-400"
-            >
-              Instagram
-            </a>
-          ) : null}
-          {data?.redes_sociales?.facebook ? (
-            <a
-              href={data.redes_sociales.facebook}
-              className="hover:text-glacier-400"
-            >
-              Facebook
-            </a>
-          ) : null}
-        </div>
+      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
 
-        {/* Logo Ruta de los Parques */}
-        <div className="mt-8 border-t border-fjord-700 pt-6">
-          <a
-            href="https://rutadelosparques.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block opacity-80 hover:opacity-100 transition-opacity"
-          >
+          {/* Logo Destino Patagonia */}
+          <div className="shrink-0">
             <Image
-              src="https://destinopatagonia.cl/wp-content/uploads/2020/01/LOGO-ruta-de-los-parques-patagonia-180x161-1.png"
-              alt="Ruta de los Parques de la Patagonia"
+              src="/images/logo_web.png"
+              alt="Destino Patagonia"
               width={90}
-              height={81}
-              unoptimized
+              height={90}
+              className="object-contain"
             />
-          </a>
+          </div>
+
+          {/* Infos de contact */}
+          <div className="flex-1 text-sm font-body">
+            {data?.anios_experiencia ? (
+              <p className="text-glacier-200">
+                {ANIOS_TEXT[locale](data.anios_experiencia)}
+              </p>
+            ) : null}
+            <div className="mt-3 flex flex-wrap gap-x-8 gap-y-1 font-mono text-xs">
+              {data?.telefono ? <span>{data.telefono}</span> : null}
+              {data?.email ? <span>{data.email}</span> : null}
+              {data?.direccion ? <span>{data.direccion}</span> : null}
+            </div>
+            <div className="mt-3 flex gap-4 text-sm">
+              {data?.redes_sociales?.instagram ? (
+                <a
+                  href={data.redes_sociales.instagram}
+                  className="hover:text-glacier-400"
+                >
+                  Instagram
+                </a>
+              ) : null}
+              {data?.redes_sociales?.facebook ? (
+                <a
+                  href={data.redes_sociales.facebook}
+                  className="hover:text-glacier-400"
+                >
+                  Facebook
+                </a>
+              ) : null}
+            </div>
+          </div>
+
+          {/* Logo Ruta de los Parques */}
+          <div className="shrink-0">
+            <a
+              href="https://rutadelosparques.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+            >
+              <Image
+                src="/images/LOGO-ruta-de-los-parques-patagonia-180x161-1.png"
+                alt="Ruta de los Parques de la Patagonia"
+                width={90}
+                height={81}
+                className="object-contain"
+              />
+            </a>
+          </div>
+
         </div>
       </div>
     </footer>
