@@ -59,7 +59,9 @@ export function PaginaBloques({
             <div key={bloque.titulo}>
               <div className="flex items-center gap-3">
                 {icono ? (
-                  <Image src={icono} alt="" width={32} height={32} />
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
+                    <Image src={icono} alt="" width={24} height={24} />
+                  </span>
                 ) : null}
                 <h2 className="font-display text-xl text-fjord-900">
                   {bloque.titulo}
