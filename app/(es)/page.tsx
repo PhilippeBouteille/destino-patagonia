@@ -26,8 +26,8 @@ export default async function InicioPage() {
     <>
       <section className="relative flex min-h-[70vh] items-center overflow-hidden px-6 py-24 text-ice-50">
         <HeroSlider />
-        <div className="absolute inset-0 bg-fjord-900/40" />
-        <div className="relative mx-auto max-w-4xl">
+        <div className="absolute inset-0 z-[2] bg-fjord-900/40" />
+        <div className="relative z-[3] mx-auto max-w-4xl">
           <p className="font-mono text-sm uppercase tracking-widest text-glacier-400">
             Puerto Río Tranquilo · Aysén
           </p>
