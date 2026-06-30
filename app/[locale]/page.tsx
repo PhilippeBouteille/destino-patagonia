@@ -6,6 +6,7 @@ import { ICONOS_CATEGORIA } from "@/lib/icons";
 import RouteDivider from "@/components/RouteDivider";
 import HeroSlider from "@/components/HeroSlider";
 import PostalesGalerie from "@/components/PostalesGalerie";
+import ServiciosBandeau from "@/components/ServiciosBandeau";
 import { pickField, t, type Locale } from "@/lib/i18n";
 
 export const revalidate = 3600;
@@ -104,6 +105,10 @@ export default async function LocaleInicioPage({
           ))}
         </div>
       </section>
+
+      <RouteDivider className="text-fjord-400" />
+
+      <ServiciosBandeau locale={locale} />
 
       <RouteDivider className="text-fjord-400" />
 
