@@ -58,7 +58,7 @@ export default async function LocaleInicioPage({
         <h2 className="font-display text-2xl text-fjord-900">
           {t(locale, "nuestras_aventuras")}
         </h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {tours.map((tour) => (
             <Link
               key={tour.id}
