@@ -52,12 +52,14 @@ export default async function AventurasPage() {
               <div>
                 <div className="flex items-center gap-2">
                   {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
-                    <Image
-                      src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
-                      alt=""
-                      width={20}
-                      height={20}
-                    />
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-fjord-900">
+                      <Image
+                        src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
+                        alt=""
+                        width={16}
+                        height={16}
+                      />
+                    </span>
                   ) : null}
                   <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
                     {tour.categoria}
