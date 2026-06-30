@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   title: "Destino Patagonia — Navegación a Laguna San Rafael",
   description:
     "Excursiones de navegación y kayak desde Puerto Río Tranquilo hacia el Parque Nacional Laguna San Rafael.",
+  icons: {
+    icon: "/images/logo_web.png",
+    shortcut: "/images/logo_web.png",
+    apple: "/images/logo_web.png",
+  },
 };
 
 export default function RootLayout({
