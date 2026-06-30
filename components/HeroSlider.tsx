@@ -30,27 +30,25 @@ export default function HeroSlider() {
   }, [current]);
 
   return (
-    <div className="absolute inset-0">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+    <>
+      {/* Image courante — z-0 */}
+      <div
         key={current}
-        src={SLIDES[current]}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 z-0 bg-center bg-cover transition-none"
+        style={{ backgroundImage: `url(${SLIDES[current]})` }}
       />
+      {/* Image suivante — z-[1], fond en fondu */}
       {nextIdx !== null && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <div
           key={`next-${nextIdx}`}
-          src={SLIDES[nextIdx]}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover transition-opacity"
+          className="absolute inset-0 z-[1] bg-center bg-cover transition-opacity"
           style={{
+            backgroundImage: `url(${SLIDES[nextIdx]})`,
             opacity: fading ? 1 : 0,
             transitionDuration: `${TRANSITION_MS}ms`,
           }}
         />
       )}
-    </div>
+    </>
   );
 }
