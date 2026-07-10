@@ -9,6 +9,10 @@ const COPYRIGHT_PREFIX: Record<Locale, string> = {
   fr: "© 2012–2026 Destino Patagonia",
 };
 
+const TRIPADVISOR_URL =
+  "https://www.tripadvisor.fr/Attraction_Review-g1409472-d7166123-Reviews-Destino_Patagonia-Puerto_Rio_Tranquilo_Aisen_Region.html";
+const GOOGLE_REVIEW_URL = "https://share.google/BTk2i5R3C38HlUbGL";
+
 function whatsappLink(telefono: string) {
   const digits = telefono.replace(/[^\d]/g, "");
   return `https://wa.me/${digits}`;
@@ -21,6 +25,13 @@ export default async function Footer({ locale }: { locale: Locale }) {
     .select("*")
     .eq("id", 1)
     .single<InfoGeneral>();
+
+  const { data: resenas } = await supabase
+    .from("resenas_externas")
+    .select("fuente, rating, cantidad");
+
+  const resenaGoogle = resenas?.find((r) => r.fuente === "google");
+  const resenaTripadvisor = resenas?.find((r) => r.fuente === "tripadvisor");
 
   return (
     <footer className="bg-fjord-900 text-ice-100">
@@ -98,6 +109,44 @@ export default async function Footer({ locale }: { locale: Locale }) {
                   </svg>
                 </a>
               ) : null}
+            </div>
+
+            {/* Reseñas — TripAdvisor / Google */}
+            <div className="mt-4 flex items-center justify-center gap-2 sm:justify-start">
+              <a
+                href={TRIPADVISOR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wide text-ice-100 hover:bg-white/10"
+              >
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current">
+                  <path d="M12 2 14.9 8.6 22 9.3l-5.3 4.8L18.2 21 12 17.3 5.8 21l1.5-6.9L2 9.3l7.1-.7z"/>
+                </svg>
+                TripAdvisor
+                {resenaTripadvisor?.rating ? (
+                  <span className="text-glacier-300">
+                    · ★ {resenaTripadvisor.rating.toFixed(1)}
+                    {resenaTripadvisor.cantidad ? ` (${resenaTripadvisor.cantidad})` : ""}
+                  </span>
+                ) : null}
+              </a>
+              <a
+                href={GOOGLE_REVIEW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wide text-ice-100 hover:bg-white/10"
+              >
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current">
+                  <path d="M12 2 14.9 8.6 22 9.3l-5.3 4.8L18.2 21 12 17.3 5.8 21l1.5-6.9L2 9.3l7.1-.7z"/>
+                </svg>
+                Google
+                {resenaGoogle?.rating ? (
+                  <span className="text-glacier-300">
+                    · ★ {resenaGoogle.rating.toFixed(1)}
+                    {resenaGoogle.cantidad ? ` (${resenaGoogle.cantidad})` : ""}
+                  </span>
+                ) : null}
+              </a>
             </div>
           </div>
 
