@@ -11,6 +11,11 @@ body {
   color: #3a4a4d;
 }
 
+/* Texte justifié partout sur le site (demande Philippe, sept. 2026) */
+p {
+  text-align: justify;
+}
+
 /* Élément signature : ligne de route nautique, réutilisée comme séparateur */
 .route-divider {
   width: 100%;
