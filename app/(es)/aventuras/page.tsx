@@ -27,8 +27,9 @@ export default async function AventurasPage() {
     <section className="mx-auto max-w-6xl px-6 py-16">
       <h1 className="font-display text-3xl text-fjord-900">Aventuras</h1>
       <p className="mt-3 max-w-2xl text-slate-500">
-        Desde un full day hasta expediciones en kayak de 6 días — cada ruta
-        navega hacia el Parque Nacional Laguna San Rafael.
+        Desde la navegación full day hasta expediciones de múltiples días que
+        combinan zodiac, packraft y caminatas — cada ruta conduce al Parque
+        Nacional Laguna San Rafael.
       </p>
 
       <div className="mt-10 space-y-6">
