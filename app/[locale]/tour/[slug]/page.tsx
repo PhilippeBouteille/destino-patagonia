@@ -56,14 +56,16 @@ export default async function LocaleTourPage({
         </div>
       ) : null}
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
-          <Image
-            src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
-            alt=""
-            width={32}
-            height={32}
-          />
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
+            <Image
+              src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
+              alt=""
+              width={30}
+              height={30}
+            />
+          </span>
         ) : null}
         <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
           {tour.categoria}
