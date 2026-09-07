@@ -52,12 +52,12 @@ export default async function LocaleAventurasPage({
               <div>
                 <div className="flex items-center gap-2">
                   {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-fjord-900">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fjord-900">
                       <Image
                         src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
                         alt=""
-                        width={16}
-                        height={16}
+                        width={22}
+                        height={22}
                       />
                     </span>
                   ) : null}
