@@ -215,4 +215,3 @@ export function pickArrayField<T extends Record<string, unknown>>(
   if (Array.isArray(translated) && translated.length > 0) return translated as string[];
   return (obj[field] as string[]) ?? [];
 }
-
