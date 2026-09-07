@@ -5,11 +5,21 @@ import Link from "next/link";
 import { localePrefix, t, type Locale } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-const NAV_ITEMS: { key: "nav_inicio" | "nav_aventuras" | "nav_logistica" | "nav_quienes_somos" | "nav_contacto"; path: string }[] = [
+const NAV_ITEMS: {
+  key:
+    | "nav_inicio"
+    | "nav_aventuras"
+    | "nav_logistica"
+    | "nav_quienes_somos"
+    | "nav_iniciativas"
+    | "nav_contacto";
+  path: string;
+}[] = [
   { key: "nav_inicio", path: "" },
   { key: "nav_aventuras", path: "/aventuras" },
   { key: "nav_logistica", path: "/logistica" },
   { key: "nav_quienes_somos", path: "/quienes-somos" },
+  { key: "nav_iniciativas", path: "/iniciativas" },
   { key: "nav_contacto", path: "/contacto" },
 ];
 
