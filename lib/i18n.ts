@@ -7,6 +7,7 @@ type DictKey =
   | "nav_aventuras"
   | "nav_logistica"
   | "nav_quienes_somos"
+  | "nav_iniciativas"
   | "nav_contacto"
   | "hero_kicker"
   | "hero_title"
@@ -46,11 +47,12 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     nav_aventuras: "Aventuras",
     nav_logistica: "Logística",
     nav_quienes_somos: "Quiénes somos",
+    nav_iniciativas: "Iniciativas",
     nav_contacto: "Contacto",
     hero_kicker: "Puerto Río Tranquilo · Aysén",
     hero_title: "Navegando hacia el corazón de Laguna San Rafael",
     hero_text:
-      "Desde 2009 abrimos rutas de navegación y kayak por los fiordos de la Patagonia Aysén, hasta el glaciar San Rafael.",
+      "Desde 2009 abriendo rutas y experiencia en los fiordos de Aysén y los espacios más remotos de nuestra Patagonia.",
     ver_aventuras: "Ver aventuras",
     nuestras_aventuras: "Nuestras aventuras",
     postales: "Postales de nuestras aventuras",
@@ -91,6 +93,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     nav_aventuras: "Adventures",
     nav_logistica: "Logistics",
     nav_quienes_somos: "About us",
+    nav_iniciativas: "Initiatives",
     nav_contacto: "Contact",
     hero_kicker: "Puerto Río Tranquilo · Aysén",
     hero_title: "Sailing to the heart of Laguna San Rafael",
@@ -136,6 +139,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     nav_aventuras: "Aventures",
     nav_logistica: "Logistique",
     nav_quienes_somos: "Qui sommes-nous",
+    nav_iniciativas: "Initiatives",
     nav_contacto: "Contact",
     hero_kicker: "Puerto Río Tranquilo · Aysén",
     hero_title: "Naviguer vers le cœur de Laguna San Rafael",
