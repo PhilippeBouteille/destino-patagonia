@@ -40,9 +40,17 @@ function iconoParaBloque(titulo: string): string | null {
 export function PaginaBloques({
   pagina,
   locale = "es",
+  accordion = false,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
+  /**
+   * Affiche chaque bloc en dépliable (titre visible, texte replié dessous,
+   * façon FAQ) au lieu du texte affiché en continu. Demande Philippe pour
+   * la page Nosotros (sept. 2026) — désactivé par défaut pour ne pas
+   * changer les autres pages qui utilisent ce composant (ex. Logística).
+   */
+  accordion?: boolean;
 }) {
   if (!pagina) return null;
 
@@ -52,21 +60,44 @@ export function PaginaBloques({
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
       <h1 className="font-display text-3xl text-fjord-900">{titulo}</h1>
-      <div className="mt-10 space-y-10">
+      <div className={accordion ? "mt-10 divide-y divide-fjord-900/10" : "mt-10 space-y-10"}>
         {bloques.map((bloque) => {
           const icono = iconoParaBloque(bloque.titulo);
+          const titleRow = (
+            <span className="flex items-center gap-3">
+              {icono ? (
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
+                  <Image src={icono} alt="" width={24} height={24} />
+                </span>
+              ) : null}
+              <h2 className="font-display text-xl text-fjord-900">
+                {bloque.titulo}
+              </h2>
+            </span>
+          );
+
+          if (accordion) {
+            return (
+              <details key={bloque.titulo} className="group py-6 first:pt-0">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 marker:content-none [&::-webkit-details-marker]:hidden">
+                  {titleRow}
+                  <span
+                    aria-hidden
+                    className="shrink-0 font-display text-2xl leading-none text-fjord-700 transition-transform duration-200 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 whitespace-pre-line text-slate-600">
+                  {bloque.texto}
+                </p>
+              </details>
+            );
+          }
+
           return (
             <div key={bloque.titulo}>
-              <div className="flex items-center gap-3">
-                {icono ? (
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
-                    <Image src={icono} alt="" width={24} height={24} />
-                  </span>
-                ) : null}
-                <h2 className="font-display text-xl text-fjord-900">
-                  {bloque.titulo}
-                </h2>
-              </div>
+              {titleRow}
               <p className="mt-3 text-slate-600">{bloque.texto}</p>
             </div>
           );

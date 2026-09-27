@@ -11,7 +11,7 @@ export default async function QuienesSomosPage() {
   const pagina = await getPagina("quienes-somos");
   return (
     <>
-      <PaginaBloques pagina={pagina} />
+      <PaginaBloques pagina={pagina} accordion />
       <EquipoConocenos />
     </>
   );

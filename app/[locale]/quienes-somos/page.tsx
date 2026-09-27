@@ -12,7 +12,7 @@ export default async function LocaleQuienesSomosPage({
   const pagina = await getPagina("quienes-somos");
   return (
     <>
-      <PaginaBloques pagina={pagina} locale={params.locale} />
+      <PaginaBloques pagina={pagina} locale={params.locale} accordion />
       <EquipoConocenos locale={params.locale} />
     </>
   );

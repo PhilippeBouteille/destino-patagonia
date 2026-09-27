@@ -46,13 +46,21 @@ export default function EquipoConocenos({ locale = "es" }: { locale?: Locale }) 
   return (
     <section className="mx-auto max-w-5xl px-6 pb-16">
       <h2 className="font-display text-2xl text-fjord-900">{TITULO[locale]}</h2>
-      <div className="mt-8 grid gap-10 sm:grid-cols-2">
-        {EQUIPO.map((persona) => {
+      <div className="mt-8 space-y-12">
+        {EQUIPO.map((persona, index) => {
           const texto = persona.bio[locale] || PENDIENTE[locale];
           const esPendiente = texto === PENDIENTE[locale];
+          // Photo/texte en alternance : Emilia (index 0) photo à gauche,
+          // Daniel (index 1) photo à droite — demande Philippe, sept. 2026.
+          const invertido = index % 2 === 1;
           return (
-            <div key={persona.nombre}>
-              <div className="relative h-72 w-full overflow-hidden rounded-2xl bg-ice-100">
+            <div
+              key={persona.nombre}
+              className={`flex flex-col gap-6 sm:items-center sm:gap-10 ${
+                invertido ? "sm:flex-row-reverse" : "sm:flex-row"
+              }`}
+            >
+              <div className="relative h-72 w-full shrink-0 overflow-hidden rounded-2xl bg-ice-100 sm:h-80 sm:w-1/2">
                 <Image
                   src={persona.foto}
                   alt={persona.nombre}
@@ -60,16 +68,18 @@ export default function EquipoConocenos({ locale = "es" }: { locale?: Locale }) 
                   className="object-cover"
                 />
               </div>
-              <h3 className="mt-4 font-display text-lg text-fjord-900">
-                {persona.nombre}
-              </h3>
-              <p
-                className={`mt-2 whitespace-pre-line text-sm ${
-                  esPendiente ? "italic text-slate-500" : "text-slate-600"
-                }`}
-              >
-                {texto}
-              </p>
+              <div className="sm:w-1/2">
+                <h3 className="font-display text-lg text-fjord-900">
+                  {persona.nombre}
+                </h3>
+                <p
+                  className={`mt-2 whitespace-pre-line text-sm ${
+                    esPendiente ? "italic text-slate-500" : "text-slate-600"
+                  }`}
+                >
+                  {texto}
+                </p>
+              </div>
             </div>
           );
         })}
