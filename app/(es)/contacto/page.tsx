@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import type { InfoGeneral } from "@/lib/types";
 import { whatsappLink } from "@/lib/whatsapp";
+import { googleMapsLink } from "@/lib/googleMaps";
 
 export const revalidate = 3600;
 
@@ -59,7 +60,16 @@ export default async function ContactoPage() {
           {data?.direccion ? (
             <div>
               <dt className="text-rock-600">Dirección</dt>
-              <dd>{data.direccion}</dd>
+              <dd>
+                <a
+                  href={googleMapsLink(data.direccion)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-glacier-400"
+                >
+                  {data.direccion}
+                </a>
+              </dd>
             </div>
           ) : null}
         </dl>
