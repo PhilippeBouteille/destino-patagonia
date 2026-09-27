@@ -21,7 +21,7 @@ export default async function LocaleContactoPage({
     .single<InfoGeneral>();
 
   return (
-    <section className="has-hero relative flex h-screen items-center overflow-hidden px-6 py-24 text-ice-50">
+    <section className="has-hero relative flex h-screen items-end overflow-hidden px-6 pb-16 pt-24 text-ice-50 sm:pb-24">
       <ParallaxImage
         src="/images/contacto-hero.jpg"
         alt="Contacto Destino Patagonia"
