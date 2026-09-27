@@ -1,12 +1,6 @@
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 
-const TITULO: Record<Locale, string> = {
-  es: "Conócenos",
-  en: "Meet the team",
-  fr: "Faites connaissance",
-};
-
 const PENDIENTE: Record<Locale, string> = {
   es: "Texto pendiente — a completar.",
   en: "Bio pending — to be completed.",
@@ -45,8 +39,7 @@ const EQUIPO: {
 export default function EquipoConocenos({ locale = "es" }: { locale?: Locale }) {
   return (
     <section className="mx-auto max-w-5xl px-6 pb-16">
-      <h2 className="font-display text-2xl text-fjord-900">{TITULO[locale]}</h2>
-      <div className="mt-8 space-y-12">
+      <div className="space-y-12">
         {EQUIPO.map((persona, index) => {
           const texto = persona.bio[locale] || PENDIENTE[locale];
           const esPendiente = texto === PENDIENTE[locale];

@@ -13,7 +13,12 @@ export default async function LocaleQuienesSomosPage({
   return (
     <>
       {/* Nuestra historia (index 0) : texte plein, en premier */}
-      <PaginaBloques pagina={pagina} locale={params.locale} indices={[0]} />
+      <PaginaBloques
+        pagina={pagina}
+        locale={params.locale}
+        indices={[0]}
+        maxWidthClass="max-w-5xl"
+      />
       <EquipoConocenos locale={params.locale} />
       {/* Les autres blocs : en accordéon, sans répéter le titre de page */}
       <PaginaBloques

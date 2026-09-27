@@ -43,6 +43,7 @@ export function PaginaBloques({
   accordion = false,
   indices,
   showTitle = true,
+  maxWidthClass,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -64,6 +65,10 @@ export function PaginaBloques({
   /** Affiche le <h1> de la page. À désactiver sur un second appel du
    * composant pour la même page (le titre n'est affiché qu'une fois). */
   showTitle?: boolean;
+  /** Largeur max de la section (classe Tailwind `max-w-*`). Par défaut
+   * `max-w-3xl` (texte de lecture). Nosotros élargit "Nuestra historia"
+   * à `max-w-5xl` pour aligner sa largeur sur EquipoConocenos. */
+  maxWidthClass?: string;
 }) {
   if (!pagina) return null;
 
@@ -72,7 +77,7 @@ export function PaginaBloques({
   const bloques = indices ? indices.map((i) => todosBloques[i]).filter(Boolean) : todosBloques;
 
   return (
-    <section className="mx-auto max-w-3xl px-6 py-16">
+    <section className={`mx-auto ${maxWidthClass ?? "max-w-3xl"} px-6 py-16`}>
       {showTitle ? (
         <h1 className="font-display text-3xl text-fjord-900">{titulo}</h1>
       ) : null}

@@ -12,7 +12,7 @@ export default async function QuienesSomosPage() {
   return (
     <>
       {/* Nuestra historia (index 0) : texte plein, en premier */}
-      <PaginaBloques pagina={pagina} indices={[0]} />
+      <PaginaBloques pagina={pagina} indices={[0]} maxWidthClass="max-w-5xl" />
       <EquipoConocenos />
       {/* Les autres blocs : en accordéon, sans répéter le titre de page */}
       <PaginaBloques pagina={pagina} accordion showTitle={false} indices={[1, 2, 3]} />
