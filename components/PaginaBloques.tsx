@@ -45,6 +45,7 @@ export function PaginaBloques({
   showTitle = true,
   maxWidthClass,
   dark = false,
+  topClass,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -77,6 +78,14 @@ export function PaginaBloques({
    * les couleurs de texte s'adaptent pour rester lisibles dessus.
    */
   dark?: boolean;
+  /**
+   * Override du padding vertical de la section (classe Tailwind, ex.
+   * `"pb-16 pt-32"`). Par défaut `py-16`. Sert sur une page `.has-hero`
+   * sans photo (ex. Nosotros, Programas) : `main` ne pose plus son
+   * padding-top habituel, donc le premier bloc a besoin d'un padding-top
+   * plus généreux pour ne pas passer sous le header transparent.
+   */
+  topClass?: string;
 }) {
   if (!pagina) return null;
 
@@ -90,7 +99,11 @@ export function PaginaBloques({
   const chevronColor = dark ? "text-glacier-200" : "text-fjord-700";
 
   return (
-    <section className={`mx-auto ${maxWidthClass ?? "max-w-3xl"} px-6 py-16`}>
+    <section
+      className={`mx-auto ${maxWidthClass ?? "max-w-3xl"} px-6 ${
+        topClass ?? "py-16"
+      }`}
+    >
       {showTitle ? (
         <h1 className={`font-display text-3xl ${tituloColor}`}>{titulo}</h1>
       ) : null}

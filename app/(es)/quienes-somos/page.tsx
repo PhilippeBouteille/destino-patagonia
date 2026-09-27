@@ -10,12 +10,13 @@ export const metadata = {
 export default async function QuienesSomosPage() {
   const pagina = await getPagina("quienes-somos");
   return (
-    <div className="bg-fjord-900">
+    <div className="has-hero bg-fjord-900">
       {/* Nuestra historia (index 0) : texte plein, en premier */}
       <PaginaBloques
         pagina={pagina}
         indices={[0]}
         maxWidthClass="max-w-5xl"
+        topClass="pb-16 pt-32"
         dark
       />
       <EquipoConocenos dark />
