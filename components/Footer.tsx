@@ -2,6 +2,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
+import { whatsappLink } from "@/lib/whatsapp";
 
 const COPYRIGHT_PREFIX: Record<Locale, string> = {
   es: "© 2026 Destino Patagonia. Todos los derechos reservados.",
@@ -12,11 +13,6 @@ const COPYRIGHT_PREFIX: Record<Locale, string> = {
 const TRIPADVISOR_URL =
   "https://www.tripadvisor.fr/Attraction_Review-g1409472-d7166123-Reviews-Destino_Patagonia-Puerto_Rio_Tranquilo_Aisen_Region.html";
 const GOOGLE_REVIEW_URL = "https://share.google/BTk2i5R3C38HlUbGL";
-
-function whatsappLink(telefono: string) {
-  const digits = telefono.replace(/[^\d]/g, "");
-  return `https://wa.me/${digits}`;
-}
 
 export default async function Footer({ locale }: { locale: Locale }) {
   const supabase = createClient();
