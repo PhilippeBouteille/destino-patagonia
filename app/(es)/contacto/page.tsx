@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { InfoGeneral } from "@/lib/types";
 import { whatsappLink } from "@/lib/whatsapp";
 import { googleMapsLink } from "@/lib/googleMaps";
+import ParallaxImage from "@/components/ParallaxImage";
 
 export const revalidate = 3600;
 
@@ -18,25 +19,22 @@ export default async function ContactoPage() {
     .single<InfoGeneral>();
 
   return (
-    <>
-      <div className="has-hero relative h-screen w-full overflow-hidden">
-        <img
-          src="/images/contacto-hero.jpg"
-          alt="Contacto Destino Patagonia"
-          className="h-full w-full object-cover"
-        />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent" />
-      </div>
-      <section className="mx-auto max-w-3xl px-6 py-16">
-        <h1 className="font-display text-3xl text-fjord-900">Contacto</h1>
-        <p className="mt-3 text-slate-500">
+    <section className="has-hero relative flex h-screen items-center overflow-hidden px-6 py-24 text-ice-50">
+      <ParallaxImage
+        src="/images/contacto-hero.jpg"
+        alt="Contacto Destino Patagonia"
+      />
+      <div className="absolute inset-0 z-[2] bg-fjord-900/55" />
+      <div className="relative z-[3] mx-auto max-w-2xl">
+        <h1 className="font-display text-4xl sm:text-5xl">Contacto</h1>
+        <p className="mt-4 max-w-xl text-lg text-ice-100">
           Escríbenos para reservar tu aventura o coordinar un viaje especial.
         </p>
 
-        <dl className="mt-10 space-y-4 font-mono text-sm text-fjord-700">
+        <dl className="mt-10 space-y-4 font-mono text-sm">
           {data?.telefono ? (
             <div>
-              <dt className="text-rock-600">Teléfono</dt>
+              <dt className="text-glacier-200">Teléfono</dt>
               <dd>
                 <a
                   href={whatsappLink(data.telefono)}
@@ -51,15 +49,20 @@ export default async function ContactoPage() {
           ) : null}
           {data?.email ? (
             <div>
-              <dt className="text-rock-600">Email</dt>
+              <dt className="text-glacier-200">Email</dt>
               <dd>
-                <a href={`mailto:${data.email}`}>{data.email}</a>
+                <a
+                  href={`mailto:${data.email}`}
+                  className="hover:text-glacier-400"
+                >
+                  {data.email}
+                </a>
               </dd>
             </div>
           ) : null}
           {data?.direccion ? (
             <div>
-              <dt className="text-rock-600">Dirección</dt>
+              <dt className="text-glacier-200">Dirección</dt>
               <dd>
                 <a
                   href={googleMapsLink(data.direccion)}
@@ -73,7 +76,7 @@ export default async function ContactoPage() {
             </div>
           ) : null}
         </dl>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
