@@ -22,8 +22,8 @@ export default async function ProgramasPage() {
   const tours = await getTours();
 
   return (
-    <div className="bg-fjord-900">
-      <section className="mx-auto max-w-6xl px-6 py-16">
+    <div className="has-hero bg-fjord-900">
+      <section className="mx-auto max-w-6xl px-6 pb-16 pt-32">
         <h1 className="font-display text-3xl text-ice-50 sm:text-4xl">
           Programas
         </h1>
