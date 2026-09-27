@@ -37,14 +37,8 @@ export default async function TourPage({
   return (
     <article>
       {tour.fotos?.[0] ? (
-        <div className="relative h-[45vh] w-full overflow-hidden sm:h-[60vh]">
-          <Image
-            src={tour.fotos[0]}
-            alt={tour.nombre}
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="w-full">
+          <img src={tour.fotos[0]} alt={tour.nombre} className="h-auto w-full" />
         </div>
       ) : null}
 

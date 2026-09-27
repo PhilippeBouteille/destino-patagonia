@@ -41,7 +41,7 @@ export default async function LocaleProgramasPage({
               key={tour.id}
               href={`/${locale}/tour/${tour.slug}`}
               name={pickField(tour, "nombre", locale)}
-              photo={tour.fotos?.[0]}
+              photo={tour.fotos?.[1] ?? tour.fotos?.[0]}
             />
           ))}
         </div>

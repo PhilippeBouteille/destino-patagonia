@@ -43,7 +43,7 @@ export default async function ProgramasPage() {
               key={tour.id}
               href={`/tour/${tour.slug}`}
               name={tour.nombre}
-              photo={tour.fotos?.[0]}
+              photo={tour.fotos?.[1] ?? tour.fotos?.[0]}
             />
           ))}
         </div>

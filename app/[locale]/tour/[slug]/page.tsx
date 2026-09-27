@@ -45,13 +45,11 @@ export default async function LocaleTourPage({
   return (
     <article>
       {tour.fotos?.[0] ? (
-        <div className="relative h-[45vh] w-full overflow-hidden sm:h-[60vh]">
-          <Image
+        <div className="w-full">
+          <img
             src={tour.fotos[0]}
             alt={pickField(tour, "nombre", locale)}
-            fill
-            className="object-cover"
-            priority
+            className="h-auto w-full"
           />
         </div>
       ) : null}
