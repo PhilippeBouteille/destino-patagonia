@@ -18,7 +18,9 @@ export default async function IniciativasPage() {
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent" />
       </div>
-      <PaginaBloques pagina={pagina} accordion />
+      <div className="bg-fjord-900">
+        <PaginaBloques pagina={pagina} accordion dark />
+      </div>
     </>
   );
 }
