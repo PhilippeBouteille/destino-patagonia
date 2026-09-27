@@ -115,12 +115,24 @@ export default async function LocaleTourPage({
         </>
       ) : null}
 
-      <a
-        href={`/${locale}/contacto`}
-        className="mt-10 inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
-      >
-        {t(locale, "reservar")}
-      </a>
+      <div className="mt-10 flex flex-wrap gap-4">
+        <a
+          href={`/${locale}/contacto`}
+          className="inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
+        >
+          {t(locale, "reservar")}
+        </a>
+        {tour.pdf_folleto ? (
+          <a
+            href={tour.pdf_folleto}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-sm border border-fjord-900 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-fjord-900 hover:text-ice-50"
+          >
+            {t(locale, "descargar_pdf")}
+          </a>
+        ) : null}
+      </div>
     </article>
   );
 }

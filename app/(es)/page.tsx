@@ -53,7 +53,7 @@ export default async function InicioPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-display text-2xl text-fjord-900">
-          Nuestras aventuras
+          Nuestros programas
         </h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {tours.map((tour) => (

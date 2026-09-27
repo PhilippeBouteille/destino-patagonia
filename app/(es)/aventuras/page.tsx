@@ -7,7 +7,7 @@ import { ICONOS_CATEGORIA } from "@/lib/icons";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Aventuras — Destino Patagonia",
+  title: "Programas — Destino Patagonia",
 };
 
 async function getTours() {
@@ -25,7 +25,7 @@ export default async function AventurasPage() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="font-display text-3xl text-fjord-900">Aventuras</h1>
+      <h1 className="font-display text-3xl text-fjord-900">Programas</h1>
       <p className="mt-3 max-w-2xl text-slate-500">
         Desde la navegación full day hasta expediciones de múltiples días que
         combinan zodiac, packraft y caminatas — cada ruta conduce al Parque

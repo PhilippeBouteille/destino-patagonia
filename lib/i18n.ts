@@ -19,6 +19,7 @@ type DictKey =
   | "duracion"
   | "temporada"
   | "incluye"
+  | "descargar_pdf"
   | "reservar"
   | "contacto_intro"
   | "telefono"
@@ -44,7 +45,7 @@ type DictKey =
 const dict: Record<Locale, Record<DictKey, string>> = {
   es: {
     nav_inicio: "Inicio",
-    nav_aventuras: "Aventuras",
+    nav_aventuras: "Programas",
     nav_logistica: "Logística",
     nav_quienes_somos: "Quiénes somos",
     nav_iniciativas: "Iniciativas",
@@ -54,12 +55,13 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     hero_text:
       "Desde 2009 abriendo rutas y experiencia en los fiordos de Aysén y los espacios más remotos de nuestra Patagonia.",
     ver_aventuras: "Ver aventuras",
-    nuestras_aventuras: "Nuestras aventuras",
+    nuestras_aventuras: "Nuestros programas",
     postales: "Postales de nuestras aventuras",
     desde: "desde",
     duracion: "Duración",
     temporada: "Temporada",
     incluye: "Incluye",
+    descargar_pdf: "Descargar programa (PDF)",
     reservar: "Reservar este tour",
     contacto_intro: "Escríbenos para reservar tu aventura o coordinar un viaje especial.",
     telefono: "Teléfono",
@@ -90,7 +92,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
   },
   en: {
     nav_inicio: "Home",
-    nav_aventuras: "Adventures",
+    nav_aventuras: "Programs",
     nav_logistica: "Logistics",
     nav_quienes_somos: "About us",
     nav_iniciativas: "Initiatives",
@@ -100,12 +102,13 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     hero_text:
       "Since 2009 we have run sailing and kayaking routes through the fjords of Patagonia Aysén, all the way to the San Rafael glacier.",
     ver_aventuras: "See adventures",
-    nuestras_aventuras: "Our adventures",
+    nuestras_aventuras: "Our programs",
     postales: "Postcards from our adventures",
     desde: "from",
     duracion: "Duration",
     temporada: "Season",
     incluye: "Includes",
+    descargar_pdf: "Download program (PDF)",
     reservar: "Book this tour",
     contacto_intro: "Write to us to book your adventure or arrange a special trip.",
     telefono: "Phone",
@@ -136,7 +139,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
   },
   fr: {
     nav_inicio: "Accueil",
-    nav_aventuras: "Aventures",
+    nav_aventuras: "Programmes",
     nav_logistica: "Logistique",
     nav_quienes_somos: "Qui sommes-nous",
     nav_iniciativas: "Initiatives",
@@ -146,12 +149,13 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     hero_text:
       "Depuis 2009, nous proposons des routes de navigation et de kayak à travers les fjords de la Patagonie Aysén, jusqu'au glacier San Rafael.",
     ver_aventuras: "Voir les aventures",
-    nuestras_aventuras: "Nos aventures",
+    nuestras_aventuras: "Nos programmes",
     postales: "Cartes postales de nos aventures",
     desde: "dès",
     duracion: "Durée",
     temporada: "Saison",
     incluye: "Inclus",
+    descargar_pdf: "Télécharger le programme (PDF)",
     reservar: "Réserver ce circuit",
     contacto_intro: "Écrivez-nous pour réserver votre aventure ou organiser un voyage spécial.",
     telefono: "Téléphone",

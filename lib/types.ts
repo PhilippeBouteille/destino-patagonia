@@ -20,6 +20,7 @@ export type Tour = {
   incluye: string[];
   incluye_en?: string[] | null;
   incluye_fr?: string[] | null;
+  pdf_folleto?: string | null;
   fotos: string[];
   orden: number;
   publicado: boolean;

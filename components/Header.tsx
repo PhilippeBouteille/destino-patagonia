@@ -28,13 +28,13 @@ export default function Header({ locale }: { locale: Locale }) {
   const prefix = localePrefix(locale);
 
   return (
-    <header className="sticky top-0 z-50 bg-fjord-900 text-ice-50 shadow-md">
+    <header className="sticky top-0 z-50 bg-ice-50 text-fjord-900 shadow-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <Link href={prefix || "/"} className="flex items-center" onClick={() => setOpen(false)}>
           <img
             src="/images/logo_web.png"
             alt="Destino Patagonia"
-            className="h-10 w-auto object-contain"
+            className="h-20 w-auto object-contain"
           />
         </Link>
 
@@ -52,7 +52,7 @@ export default function Header({ locale }: { locale: Locale }) {
               </li>
             ))}
           </ul>
-          <LanguageSwitcher locale={locale} className="border-l border-white/20 pl-6" />
+          <LanguageSwitcher locale={locale} className="border-l border-fjord-900/15 pl-6" />
         </nav>
 
         {/* Bouton hamburger mobile */}
@@ -64,17 +64,17 @@ export default function Header({ locale }: { locale: Locale }) {
           className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-0.5 w-6 bg-ice-50 transition-transform ${
+            className={`h-0.5 w-6 bg-fjord-900 transition-transform ${
               open ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 bg-ice-50 transition-opacity ${
+            className={`h-0.5 w-6 bg-fjord-900 transition-opacity ${
               open ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 bg-ice-50 transition-transform ${
+            className={`h-0.5 w-6 bg-fjord-900 transition-transform ${
               open ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -85,7 +85,7 @@ export default function Header({ locale }: { locale: Locale }) {
       {open ? (
         <nav
           aria-label="Mobile navigation"
-          className="border-t border-white/10 bg-fjord-900 px-6 py-4 md:hidden"
+          className="border-t border-fjord-900/10 bg-ice-50 px-6 py-4 md:hidden"
         >
           <ul className="flex flex-col gap-4 text-base font-body">
             {NAV_ITEMS.map((item) => (

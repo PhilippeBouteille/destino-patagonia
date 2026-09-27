@@ -103,12 +103,24 @@ export default async function TourPage({
         </>
       ) : null}
 
-      <a
-        href="/contacto"
-        className="mt-10 inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
-      >
-        Reservar este tour
-      </a>
+      <div className="mt-10 flex flex-wrap gap-4">
+        <a
+          href="/contacto"
+          className="inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
+        >
+          Reservar este tour
+        </a>
+        {tour.pdf_folleto ? (
+          <a
+            href={tour.pdf_folleto}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-sm border border-fjord-900 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-fjord-900 hover:text-ice-50"
+          >
+            Descargar programa (PDF)
+          </a>
+        ) : null}
+      </div>
     </article>
   );
 }
