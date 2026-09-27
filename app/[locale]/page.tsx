@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
-import { ICONOS_CATEGORIA } from "@/lib/icons";
 import RouteDivider from "@/components/RouteDivider";
 import HeroVideo from "@/components/HeroVideo";
 import PostalesGalerie from "@/components/PostalesGalerie";
@@ -60,50 +59,33 @@ export default async function LocaleInicioPage({
         <h2 className="font-display text-2xl text-fjord-900">
           {t(locale, "nuestras_aventuras")}
         </h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {tours.map((tour) => (
             <Link
               key={tour.id}
               href={`/${locale}/tour/${tour.slug}`}
-              className="group block overflow-hidden rounded-sm border border-ice-100 bg-white transition hover:border-glacier-400"
+              className="group block"
             >
-              {tour.fotos?.[0] ? (
-                <div className="relative h-44 w-full">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-fjord-700">
+                {tour.fotos?.[0] ? (
                   <Image
                     src={tour.fotos[0]}
                     alt={pickField(tour, "nombre", locale)}
                     fill
-                    className="object-cover transition group-hover:scale-105"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                   />
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-t from-fjord-900/95 via-fjord-900/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <h3 className="font-display text-base uppercase tracking-wide text-ice-50 sm:text-lg">
+                    {pickField(tour, "nombre", locale)}
+                  </h3>
                 </div>
-              ) : null}
-              <div className="p-6">
-                <div className="flex items-center gap-2">
-                  {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fjord-900">
-                      <Image
-                        src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
-                        alt=""
-                        width={22}
-                        height={22}
-                      />
-                    </span>
-                  ) : null}
-                  <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
-                    {tour.categoria}
-                  </p>
-                </div>
-                <h3 className="mt-2 font-display text-xl text-fjord-900">
-                  {pickField(tour, "nombre", locale)}
-                </h3>
-                <p className="mt-2 text-sm text-slate-500">
-                  {pickField(tour, "descripcion_corta", locale)}
-                </p>
-                <p className="mt-4 font-mono text-sm text-fjord-700">
-                  {pickField(tour, "duracion", locale)} · {t(locale, "desde")}{" "}
-                  {tour.precio_desde?.toLocaleString("es-CL")} CLP
-                </p>
               </div>
+              <p className="mt-3 font-mono text-xs uppercase tracking-wide text-rock-600">
+                {pickField(tour, "duracion", locale)} · {t(locale, "desde")}{" "}
+                {tour.precio_desde?.toLocaleString("es-CL")} CLP
+              </p>
             </Link>
           ))}
         </div>
