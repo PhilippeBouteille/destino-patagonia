@@ -4,9 +4,9 @@ import type { InfoGeneral } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
 const COPYRIGHT_PREFIX: Record<Locale, string> = {
-  es: "© 2012–2026 Destino Patagonia",
-  en: "© 2012–2026 Destino Patagonia",
-  fr: "© 2012–2026 Destino Patagonia",
+  es: "© 2026 Destino Patagonia. Todos los derechos reservados.",
+  en: "© 2026 Destino Patagonia. Todos los derechos reservados.",
+  fr: "© 2026 Destino Patagonia. Todos los derechos reservados.",
 };
 
 const TRIPADVISOR_URL =

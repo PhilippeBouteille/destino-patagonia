@@ -24,9 +24,7 @@ export default async function LocaleProgramasPage({
   const tours = await getTours();
 
   return (
-    // "programas-invert" : couleurs inversées avec le footer sur cette page
-    // (fond sombre ici, footer clair — voir app/globals.css).
-    <div className="programas-invert bg-fjord-900">
+    <div className="bg-fjord-900">
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h1 className="font-display text-3xl text-ice-50 sm:text-4xl">
           {t(locale, "nav_aventuras")}
