@@ -44,6 +44,7 @@ export function PaginaBloques({
   indices,
   showTitle = true,
   maxWidthClass,
+  dark = false,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -69,6 +70,13 @@ export function PaginaBloques({
    * `max-w-3xl` (texte de lecture). Nosotros élargit "Nuestra historia"
    * à `max-w-5xl` pour aligner sa largeur sur EquipoConocenos. */
   maxWidthClass?: string;
+  /**
+   * Palette claire → sombre pour une page à fond sombre (ex. Logística,
+   * sept. 2026 : fond couleur footer, bg-fjord-900). Le fond lui-même
+   * n'est pas posé ici — la page l'ajoute sur son propre wrapper — mais
+   * les couleurs de texte s'adaptent pour rester lisibles dessus.
+   */
+  dark?: boolean;
 }) {
   if (!pagina) return null;
 
@@ -76,26 +84,35 @@ export function PaginaBloques({
   const todosBloques = pickBloques(pagina, locale);
   const bloques = indices ? indices.map((i) => todosBloques[i]).filter(Boolean) : todosBloques;
 
+  const tituloColor = dark ? "text-ice-50" : "text-fjord-900";
+  const textoColor = dark ? "text-ice-100" : "text-slate-600";
+  const divideColor = dark ? "divide-ice-50/15" : "divide-fjord-900/10";
+  const chevronColor = dark ? "text-glacier-200" : "text-fjord-700";
+
   return (
     <section className={`mx-auto ${maxWidthClass ?? "max-w-3xl"} px-6 py-16`}>
       {showTitle ? (
-        <h1 className="font-display text-3xl text-fjord-900">{titulo}</h1>
+        <h1 className={`font-display text-3xl ${tituloColor}`}>{titulo}</h1>
       ) : null}
       <div
         className={`${showTitle ? "mt-10" : ""} ${
-          accordion ? "divide-y divide-fjord-900/10" : "space-y-10"
+          accordion ? `divide-y ${divideColor}` : "space-y-10"
         }`}
       >
         {bloques.map((bloque) => {
           const icono = iconoParaBloque(bloque.titulo);
           const titleRow = (
-            <span className="flex items-center gap-3">
+            <span className="flex items-center gap-4">
               {icono ? (
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
-                  <Image src={icono} alt="" width={24} height={24} />
-                </span>
+                <Image
+                  src={icono}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="shrink-0"
+                />
               ) : null}
-              <h2 className="font-display text-xl text-fjord-900">
+              <h2 className={`font-display text-xl ${tituloColor}`}>
                 {bloque.titulo}
               </h2>
             </span>
@@ -108,12 +125,12 @@ export function PaginaBloques({
                   {titleRow}
                   <span
                     aria-hidden
-                    className="shrink-0 font-display text-2xl leading-none text-fjord-700 transition-transform duration-200 group-open:rotate-45"
+                    className={`shrink-0 font-display text-2xl leading-none transition-transform duration-200 group-open:rotate-45 ${chevronColor}`}
                   >
                     +
                   </span>
                 </summary>
-                <p className="mt-3 whitespace-pre-line text-slate-600">
+                <p className={`mt-3 whitespace-pre-line ${textoColor}`}>
                   {bloque.texto}
                 </p>
               </details>
@@ -123,7 +140,7 @@ export function PaginaBloques({
           return (
             <div key={bloque.titulo}>
               {titleRow}
-              <p className="mt-3 text-slate-600">{bloque.texto}</p>
+              <p className={`mt-3 ${textoColor}`}>{bloque.texto}</p>
             </div>
           );
         })}
