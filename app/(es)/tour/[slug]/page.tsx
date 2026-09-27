@@ -38,7 +38,7 @@ export default async function TourPage({
   return (
     <article>
       {tour.fotos?.[0] ? (
-        <div className="has-hero relative h-[90vh] w-full overflow-hidden sm:h-[120vh]">
+        <div className="has-hero relative h-screen w-full overflow-hidden">
           <img
             src={tour.fotos[0]}
             alt={tour.nombre}
