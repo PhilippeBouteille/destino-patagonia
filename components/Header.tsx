@@ -40,7 +40,7 @@ export default function Header({ locale }: { locale: Locale }) {
 
         {/* Navigation desktop */}
         <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">
-          <ul className="flex gap-6 text-sm font-body">
+          <ul className="flex gap-6 text-sm font-body uppercase tracking-wide">
             {NAV_ITEMS.map((item) => (
               <li key={item.key}>
                 <Link
@@ -87,7 +87,7 @@ export default function Header({ locale }: { locale: Locale }) {
           aria-label="Mobile navigation"
           className="border-t border-fjord-900/10 bg-ice-50 px-6 py-4 md:hidden"
         >
-          <ul className="flex flex-col gap-4 text-base font-body">
+          <ul className="flex flex-col gap-4 text-base font-body uppercase tracking-wide">
             {NAV_ITEMS.map((item) => (
               <li key={item.key}>
                 <Link

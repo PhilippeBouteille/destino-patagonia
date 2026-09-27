@@ -48,7 +48,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     nav_inicio: "Inicio",
     nav_aventuras: "Programas",
     nav_logistica: "Logística",
-    nav_quienes_somos: "Quiénes somos",
+    nav_quienes_somos: "Nosotros",
     nav_iniciativas: "Iniciativas",
     nav_contacto: "Contacto",
     hero_kicker: "Puerto Río Tranquilo · Aysén",
