@@ -45,12 +45,13 @@ export default async function LocaleTourPage({
   return (
     <article>
       {tour.fotos?.[0] ? (
-        <div className="w-full">
+        <div className="has-hero relative w-full">
           <img
             src={tour.fotos[0]}
             alt={pickField(tour, "nombre", locale)}
             className="h-auto w-full"
           />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent" />
         </div>
       ) : null}
 

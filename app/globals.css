@@ -78,3 +78,46 @@ body:has(.programas-invert) footer .footer-muted {
 body:has(.programas-invert) footer .footer-faint {
   color: rgba(14, 42, 48, 0.4);
 }
+
+/*
+ * Header transparent en haut de page (sept. 2026), pour les pages qui ont
+ * une photo/vidéo en pleine largeur juste sous le header (accueil, pages
+ * programme, et toute future page marquée `.has-hero`). Par défaut le
+ * header reste plein (bg-ice-50/text-fjord-900, cf. Header.tsx) — sans
+ * marqueur `.has-hero` sur la page, rien ne change. Header.tsx bascule
+ * lui-même entre les classes `.header-top` (haut de page, pas encore
+ * scrollé) et `.header-scrolled` (après ~40px de scroll, ou menu mobile
+ * ouvert) : c'est cette bascule qui restaure le header plein dès qu'on
+ * scrolle, même sur une page avec `.has-hero`.
+ *
+ * Pour flotter au-dessus de la photo, le header est passé de `sticky` à
+ * `fixed` (il ne prend plus de place dans le flux normal). `main` reçoit
+ * donc un padding-top fixe (hauteur du header, ~120px) pour ne pas passer
+ * sous le header sur les pages normales ; sur une page `.has-hero`, ce
+ * padding est retiré, ce qui suffit à faire commencer la photo/vidéo (le
+ * tout premier élément de la page) au sommet réel de la page, sous le
+ * header transparent.
+ */
+main {
+  padding-top: 120px;
+}
+body:has(.has-hero) main {
+  padding-top: 0;
+}
+.header-lang-divider {
+  border-color: rgba(14, 42, 48, 0.15); /* fjord-900/15 : valeur d'origine */
+}
+body:has(.has-hero) header.header-top {
+  background-color: transparent;
+  color: #ffffff;
+  box-shadow: none;
+}
+body:has(.has-hero) header.header-top .header-lang-divider {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+/* Le panneau mobile est un overlay plein écran ; toujours plein pour la
+   lisibilité, quelle que soit la page (photo ou non). */
+.header-mobile-panel {
+  background-color: #f6faf9; /* ice-50 */
+  color: #0e2a30; /* fjord-900 */
+}

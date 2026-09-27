@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { localePrefix, t, type Locale } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -25,10 +25,23 @@ const NAV_ITEMS: {
 
 export default function Header({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const prefix = localePrefix(locale);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-ice-50 text-fjord-900 shadow-md">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 bg-ice-50 text-fjord-900 shadow-md transition-colors duration-300 ${
+        // Le menu mobile ouvert reste toujours plein, même sur une page avec photo
+        open ? "header-scrolled" : scrolled ? "header-scrolled" : "header-top"
+      }`}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <Link href={prefix || "/"} className="flex items-center" onClick={() => setOpen(false)}>
           <img
@@ -52,7 +65,10 @@ export default function Header({ locale }: { locale: Locale }) {
               </li>
             ))}
           </ul>
-          <LanguageSwitcher locale={locale} className="border-l border-fjord-900/15 pl-6" />
+          <LanguageSwitcher
+            locale={locale}
+            className="header-lang-divider border-l pl-6"
+          />
         </nav>
 
         {/* Bouton hamburger mobile */}
@@ -64,17 +80,17 @@ export default function Header({ locale }: { locale: Locale }) {
           className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-0.5 w-6 bg-fjord-900 transition-transform ${
+            className={`h-0.5 w-6 bg-current transition-transform ${
               open ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 bg-fjord-900 transition-opacity ${
+            className={`h-0.5 w-6 bg-current transition-opacity ${
               open ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`h-0.5 w-6 bg-fjord-900 transition-transform ${
+            className={`h-0.5 w-6 bg-current transition-transform ${
               open ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -85,7 +101,7 @@ export default function Header({ locale }: { locale: Locale }) {
       {open ? (
         <nav
           aria-label="Mobile navigation"
-          className="border-t border-fjord-900/10 bg-ice-50 px-6 py-4 md:hidden"
+          className="header-mobile-panel fixed inset-x-0 top-[120px] bottom-0 z-40 overflow-y-auto border-t border-fjord-900/10 bg-ice-50 px-6 py-4 text-fjord-900 md:hidden"
         >
           <ul className="flex flex-col gap-4 text-base font-body uppercase tracking-wide">
             {NAV_ITEMS.map((item) => (
