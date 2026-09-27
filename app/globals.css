@@ -34,3 +34,47 @@ p {
     transition-duration: 0.001ms !important;
   }
 }
+
+/*
+ * Page "Programas" (sept. 2026) : la page passe en fond sombre
+ * (bg-fjord-900, posé directement sur son wrapper dans le JSX) et, en
+ * miroir, le footer — normalement sombre partout ailleurs sur le site —
+ * passe en clair sur cette seule page. Le footer étant un composant
+ * partagé par le layout (rendu identique sur toutes les pages), on ne
+ * peut pas lui passer une prop par page sans réécrire l'architecture des
+ * layouts ; on détecte donc la page via un marqueur `.programas-invert`
+ * posé sur son wrapper, et `:has()` (supporté par tous les navigateurs
+ * courants) permet au CSS du footer de "voir" ce marqueur ailleurs dans
+ * la page.
+ */
+body:has(.programas-invert) footer {
+  background-color: #f6faf9; /* ice-50 */
+  color: #0e2a30; /* fjord-900 */
+}
+body:has(.programas-invert) footer .footer-address {
+  color: #1b4a52; /* fjord-700 */
+}
+body:has(.programas-invert) footer .footer-link {
+  color: #0e2a30;
+}
+body:has(.programas-invert) footer .footer-link:hover {
+  color: #1b4a52; /* fjord-700 : plus lisible que glacier-400 sur fond clair */
+}
+body:has(.programas-invert) footer .footer-border {
+  border-color: rgba(14, 42, 48, 0.15);
+}
+body:has(.programas-invert) footer .footer-hover-bg:hover {
+  background-color: rgba(14, 42, 48, 0.06);
+}
+body:has(.programas-invert) footer .footer-rating {
+  color: #1b4a52;
+}
+body:has(.programas-invert) footer .footer-border-soft {
+  border-color: rgba(14, 42, 48, 0.1);
+}
+body:has(.programas-invert) footer .footer-muted {
+  color: rgba(14, 42, 48, 0.6);
+}
+body:has(.programas-invert) footer .footer-faint {
+  color: rgba(14, 42, 48, 0.4);
+}

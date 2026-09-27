@@ -12,8 +12,9 @@ type DictKey =
   | "hero_kicker"
   | "hero_title"
   | "hero_text"
-  | "ver_aventuras"
+  | "ver_programas"
   | "nuestras_aventuras"
+  | "programas_intro"
   | "postales"
   | "desde"
   | "duracion"
@@ -54,8 +55,10 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     hero_title: "Navegando hacia el corazón de Laguna San Rafael",
     hero_text:
       "Desde 2009 abriendo rutas y experiencia en los fiordos de Aysén y los espacios más remotos de nuestra Patagonia.",
-    ver_aventuras: "Ver aventuras",
+    ver_programas: "Ver programas",
     nuestras_aventuras: "Nuestros programas",
+    programas_intro:
+      "Desde la navegación full day hasta expediciones de múltiples días que combinan zodiac, packraft y caminatas — cada ruta conduce al Parque Nacional Laguna San Rafael.",
     postales: "Postales de nuestras aventuras",
     desde: "desde",
     duracion: "Duración",
@@ -101,8 +104,10 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     hero_title: "Sailing to the heart of Laguna San Rafael",
     hero_text:
       "Since 2009 we have run sailing and kayaking routes through the fjords of Patagonia Aysén, all the way to the San Rafael glacier.",
-    ver_aventuras: "See adventures",
+    ver_programas: "View programs",
     nuestras_aventuras: "Our programs",
+    programas_intro:
+      "From a full-day sailing trip to multi-day expeditions combining zodiac, packraft and hiking — every route leads to Laguna San Rafael National Park.",
     postales: "Postcards from our adventures",
     desde: "from",
     duracion: "Duration",
@@ -148,8 +153,10 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     hero_title: "Naviguer vers le cœur de Laguna San Rafael",
     hero_text:
       "Depuis 2009, nous proposons des routes de navigation et de kayak à travers les fjords de la Patagonie Aysén, jusqu'au glacier San Rafael.",
-    ver_aventuras: "Voir les aventures",
+    ver_programas: "Voir les programmes",
     nuestras_aventuras: "Nos programmes",
+    programas_intro:
+      "De la navigation full day aux expéditions de plusieurs jours combinant zodiac, packraft et randonnée — chaque itinéraire mène au Parc National Laguna San Rafael.",
     postales: "Cartes postales de nos aventures",
     desde: "dès",
     duracion: "Durée",

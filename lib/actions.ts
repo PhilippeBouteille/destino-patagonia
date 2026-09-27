@@ -53,7 +53,7 @@ export async function updateTour(id: string, formData: FormData) {
   await supabase.from("tours").update(payload).eq("id", id);
 
   revalidatePath("/");
-  revalidatePath("/aventuras");
+  revalidatePath("/programas");
   revalidatePath("/admin");
   redirect("/admin?guardado=tour");
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
@@ -7,6 +6,7 @@ import HeroVideo from "@/components/HeroVideo";
 import PostalesGalerie from "@/components/PostalesGalerie";
 import ServiciosBandeau from "@/components/ServiciosBandeau";
 import InstagramFeed from "@/components/InstagramFeed";
+import TourCard from "@/components/TourCard";
 
 export const revalidate = 3600;
 
@@ -40,10 +40,10 @@ export default async function InicioPage() {
             la Patagonia Aysén, hasta el glaciar San Rafael.
           </p>
           <Link
-            href="/aventuras"
+            href="/programas"
             className="mt-8 inline-block rounded-sm bg-glacier-400 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-glacier-200"
           >
-            Ver aventuras
+            Ver programas
           </Link>
         </div>
       </section>
@@ -56,24 +56,12 @@ export default async function InicioPage() {
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {tours.map((tour) => (
-            <Link key={tour.id} href={`/tour/${tour.slug}`} className="group block">
-              <div className="relative aspect-[2/5] w-full overflow-hidden rounded-sm bg-fjord-700">
-                {tour.fotos?.[0] ? (
-                  <Image
-                    src={tour.fotos[0]}
-                    alt={tour.nombre}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
-                ) : null}
-                <div className="absolute inset-0 bg-fjord-900/30 transition group-hover:bg-fjord-900/40" />
-                <div className="absolute inset-0 flex items-center justify-center p-4 text-center">
-                  <h3 className="font-display text-lg uppercase tracking-wide text-ice-50 sm:text-xl">
-                    {tour.nombre}
-                  </h3>
-                </div>
-              </div>
-            </Link>
+            <TourCard
+              key={tour.id}
+              href={`/tour/${tour.slug}`}
+              name={tour.nombre}
+              photo={tour.fotos?.[0]}
+            />
           ))}
         </div>
       </section>

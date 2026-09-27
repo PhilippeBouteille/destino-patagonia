@@ -17,7 +17,7 @@ async function getTourSlugs(): Promise<string[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const slugs = await getTourSlugs();
 
-  const staticPaths = ["", "/aventuras", "/logistica", "/quienes-somos", "/contacto"];
+  const staticPaths = ["", "/programas", "/logistica", "/quienes-somos", "/contacto"];
   const tourPaths = slugs.map((slug) => `/tour/${slug}`);
   const paths = [...staticPaths, ...tourPaths];
 

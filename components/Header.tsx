@@ -16,7 +16,7 @@ const NAV_ITEMS: {
   path: string;
 }[] = [
   { key: "nav_inicio", path: "" },
-  { key: "nav_aventuras", path: "/aventuras" },
+  { key: "nav_aventuras", path: "/programas" },
   { key: "nav_logistica", path: "/logistica" },
   { key: "nav_quienes_somos", path: "/quienes-somos" },
   { key: "nav_iniciativas", path: "/iniciativas" },
