@@ -41,6 +41,8 @@ export function PaginaBloques({
   pagina,
   locale = "es",
   accordion = false,
+  indices,
+  showTitle = true,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -51,16 +53,34 @@ export function PaginaBloques({
    * changer les autres pages qui utilisent ce composant (ex. Logística).
    */
   accordion?: boolean;
+  /**
+   * Ne rend que ces blocs, par position dans le tableau `bloques` (même
+   * ordre dans toutes les langues). Sert à découper l'affichage d'une
+   * page en plusieurs sections (ex. Nosotros : "Nuestra historia" en
+   * texte plein en premier, puis les autres blocs en accordéon plus bas,
+   * avec autre chose entre les deux). Par défaut, tous les blocs.
+   */
+  indices?: number[];
+  /** Affiche le <h1> de la page. À désactiver sur un second appel du
+   * composant pour la même page (le titre n'est affiché qu'une fois). */
+  showTitle?: boolean;
 }) {
   if (!pagina) return null;
 
   const titulo = pickField(pagina, "titulo", locale);
-  const bloques = pickBloques(pagina, locale);
+  const todosBloques = pickBloques(pagina, locale);
+  const bloques = indices ? indices.map((i) => todosBloques[i]).filter(Boolean) : todosBloques;
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="font-display text-3xl text-fjord-900">{titulo}</h1>
-      <div className={accordion ? "mt-10 divide-y divide-fjord-900/10" : "mt-10 space-y-10"}>
+      {showTitle ? (
+        <h1 className="font-display text-3xl text-fjord-900">{titulo}</h1>
+      ) : null}
+      <div
+        className={`${showTitle ? "mt-10" : ""} ${
+          accordion ? "divide-y divide-fjord-900/10" : "space-y-10"
+        }`}
+      >
         {bloques.map((bloque) => {
           const icono = iconoParaBloque(bloque.titulo);
           const titleRow = (

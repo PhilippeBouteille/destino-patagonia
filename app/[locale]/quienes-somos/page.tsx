@@ -12,8 +12,17 @@ export default async function LocaleQuienesSomosPage({
   const pagina = await getPagina("quienes-somos");
   return (
     <>
-      <PaginaBloques pagina={pagina} locale={params.locale} accordion />
+      {/* Nuestra historia (index 0) : texte plein, en premier */}
+      <PaginaBloques pagina={pagina} locale={params.locale} indices={[0]} />
       <EquipoConocenos locale={params.locale} />
+      {/* Les autres blocs : en accordéon, sans répéter le titre de page */}
+      <PaginaBloques
+        pagina={pagina}
+        locale={params.locale}
+        accordion
+        showTitle={false}
+        indices={[1, 2, 3]}
+      />
     </>
   );
 }

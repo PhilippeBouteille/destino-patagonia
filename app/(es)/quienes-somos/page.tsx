@@ -11,8 +11,11 @@ export default async function QuienesSomosPage() {
   const pagina = await getPagina("quienes-somos");
   return (
     <>
-      <PaginaBloques pagina={pagina} accordion />
+      {/* Nuestra historia (index 0) : texte plein, en premier */}
+      <PaginaBloques pagina={pagina} indices={[0]} />
       <EquipoConocenos />
+      {/* Les autres blocs : en accordéon, sans répéter le titre de page */}
+      <PaginaBloques pagina={pagina} accordion showTitle={false} indices={[1, 2, 3]} />
     </>
   );
 }
