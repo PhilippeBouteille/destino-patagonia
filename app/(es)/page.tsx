@@ -6,7 +6,7 @@ import HeroVideo from "@/components/HeroVideo";
 import PostalesGalerie from "@/components/PostalesGalerie";
 import ServiciosBandeau from "@/components/ServiciosBandeau";
 import InstagramFeed from "@/components/InstagramFeed";
-import TourCard from "@/components/TourCard";
+import ProgramasAccordion from "@/components/ProgramasAccordion";
 
 export const revalidate = 3600;
 
@@ -54,15 +54,8 @@ export default async function InicioPage() {
         <h2 className="font-display text-2xl text-fjord-900">
           Nuestros programas
         </h2>
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-          {tours.map((tour) => (
-            <TourCard
-              key={tour.id}
-              href={`/tour/${tour.slug}`}
-              name={tour.nombre}
-              photo={tour.fotos?.[1] ?? tour.fotos?.[0]}
-            />
-          ))}
+        <div className="mt-8">
+          <ProgramasAccordion tours={tours} basePath="/tour" />
         </div>
       </section>
 

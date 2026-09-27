@@ -6,8 +6,8 @@ import HeroVideo from "@/components/HeroVideo";
 import PostalesGalerie from "@/components/PostalesGalerie";
 import ServiciosBandeau from "@/components/ServiciosBandeau";
 import InstagramFeed from "@/components/InstagramFeed";
-import TourCard from "@/components/TourCard";
-import { pickField, t, type Locale } from "@/lib/i18n";
+import ProgramasAccordion from "@/components/ProgramasAccordion";
+import { t, type Locale } from "@/lib/i18n";
 
 export const revalidate = 3600;
 
@@ -59,15 +59,12 @@ export default async function LocaleInicioPage({
         <h2 className="font-display text-2xl text-fjord-900">
           {t(locale, "nuestras_aventuras")}
         </h2>
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-          {tours.map((tour) => (
-            <TourCard
-              key={tour.id}
-              href={`/${locale}/tour/${tour.slug}`}
-              name={pickField(tour, "nombre", locale)}
-              photo={tour.fotos?.[1] ?? tour.fotos?.[0]}
-            />
-          ))}
+        <div className="mt-8">
+          <ProgramasAccordion
+            tours={tours}
+            locale={locale}
+            basePath={`/${locale}/tour`}
+          />
         </div>
       </section>
 

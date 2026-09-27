@@ -22,6 +22,7 @@ type DictKey =
   | "incluye"
   | "descargar_pdf"
   | "reservar"
+  | "ver_detalle"
   | "contacto_intro"
   | "telefono"
   | "email"
@@ -66,6 +67,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     incluye: "Incluye",
     descargar_pdf: "Descargar programa (PDF)",
     reservar: "Reservar este tour",
+    ver_detalle: "Ver programa",
     contacto_intro: "Escríbenos para reservar tu aventura o coordinar un viaje especial.",
     telefono: "Teléfono",
     email: "Email",
@@ -115,6 +117,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     incluye: "Includes",
     descargar_pdf: "Download program (PDF)",
     reservar: "Book this tour",
+    ver_detalle: "View program",
     contacto_intro: "Write to us to book your adventure or arrange a special trip.",
     telefono: "Phone",
     email: "Email",
@@ -164,6 +167,7 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     incluye: "Inclus",
     descargar_pdf: "Télécharger le programme (PDF)",
     reservar: "Réserver ce circuit",
+    ver_detalle: "Voir le programme",
     contacto_intro: "Écrivez-nous pour réserver votre aventure ou organiser un voyage spécial.",
     telefono: "Téléphone",
     email: "Email",
