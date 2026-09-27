@@ -38,13 +38,12 @@ p {
 /*
  * Header transparent en haut de page (sept. 2026), pour les pages qui ont
  * une photo/vidéo en pleine largeur juste sous le header (accueil, pages
- * programme, et toute future page marquée `.has-hero`). Par défaut le
- * header reste plein (bg-ice-50/text-fjord-900, cf. Header.tsx) — sans
- * marqueur `.has-hero` sur la page, rien ne change. Header.tsx bascule
+ * programme, et toute future page marquée `.has-hero`). Header.tsx bascule
  * lui-même entre les classes `.header-top` (haut de page, pas encore
  * scrollé) et `.header-scrolled` (après ~40px de scroll, ou menu mobile
- * ouvert) : c'est cette bascule qui restaure le header plein dès qu'on
- * scrolle, même sur une page avec `.has-hero`.
+ * ouvert) ; le fond du header (plein en haut, translucide 50 % au scroll,
+ * cf. plus bas) est entièrement piloté par ces deux classes ici — Header.tsx
+ * ne pose plus de couleur de fond lui-même.
  *
  * Pour flotter au-dessus de la photo, le header est passé de `sticky` à
  * `fixed` (il ne prend plus de place dans le flux normal). `main` reçoit
@@ -62,6 +61,17 @@ body:has(.has-hero) main {
 }
 .header-lang-divider {
   border-color: rgba(14, 42, 48, 0.15); /* fjord-900/15 : valeur d'origine */
+}
+/* Fond du header, contrôlé entièrement ici (plus de bg-ice-50 fixe dans
+   Header.tsx) : plein en haut de page, translucide à 50 % dès qu'on
+   scrolle (ou menu mobile ouvert) — sur toutes les pages. */
+header.header-top {
+  background-color: #eaf3f2; /* ice-50 */
+}
+header.header-scrolled {
+  background-color: rgba(234, 243, 242, 0.5); /* ice-50 à 50 % */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 body:has(.has-hero) header.header-top {
   background-color: transparent;
