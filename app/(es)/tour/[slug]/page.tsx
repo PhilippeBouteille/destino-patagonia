@@ -35,9 +35,9 @@ export default async function TourPage({
   if (!tour) notFound();
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
+    <article>
       {tour.fotos?.[0] ? (
-        <div className="relative mb-8 h-72 w-full overflow-hidden rounded-sm sm:h-96">
+        <div className="relative h-[45vh] w-full overflow-hidden sm:h-[60vh]">
           <Image
             src={tour.fotos[0]}
             alt={tour.nombre}
@@ -48,78 +48,80 @@ export default async function TourPage({
         </div>
       ) : null}
 
-      <div className="flex items-center gap-2">
-        {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
-          <Image
-            src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
-            alt=""
-            width={32}
-            height={32}
-          />
+      <div className="mx-auto max-w-3xl px-6 py-16">
+        <div className="flex items-center gap-2">
+          {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
+            <Image
+              src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
+              alt=""
+              width={32}
+              height={32}
+            />
+          ) : null}
+          <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
+            {tour.categoria}
+          </p>
+        </div>
+        <h1 className="mt-2 font-display text-3xl text-fjord-900 sm:text-4xl">
+          {tour.nombre}
+        </h1>
+
+        <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-fjord-700">
+          <div>
+            <dt className="text-rock-600">Duración</dt>
+            <dd>{tour.duracion}</dd>
+          </div>
+          <div>
+            <dt className="text-rock-600">Temporada</dt>
+            <dd>
+              {tour.temporada_ini} – {tour.temporada_fin}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-rock-600">Desde</dt>
+            <dd>{tour.precio_desde?.toLocaleString("es-CL")} CLP</dd>
+          </div>
+        </dl>
+
+        <p className="mt-8 text-lg text-slate-600">{tour.descripcion_corta}</p>
+
+        {tour.descripcion_larga ? (
+          <p className="mt-4 whitespace-pre-line text-slate-500">
+            {tour.descripcion_larga}
+          </p>
         ) : null}
-        <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
-          {tour.categoria}
-        </p>
-      </div>
-      <h1 className="mt-2 font-display text-3xl text-fjord-900 sm:text-4xl">
-        {tour.nombre}
-      </h1>
 
-      <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-fjord-700">
-        <div>
-          <dt className="text-rock-600">Duración</dt>
-          <dd>{tour.duracion}</dd>
-        </div>
-        <div>
-          <dt className="text-rock-600">Temporada</dt>
-          <dd>
-            {tour.temporada_ini} – {tour.temporada_fin}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-rock-600">Desde</dt>
-          <dd>{tour.precio_desde?.toLocaleString("es-CL")} CLP</dd>
-        </div>
-      </dl>
+        {tour.incluye?.length ? (
+          <>
+            <h2 className="mt-10 font-display text-xl text-fjord-900">
+              Incluye
+            </h2>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-600">
+              {tour.incluye.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
 
-      <p className="mt-8 text-lg text-slate-600">{tour.descripcion_corta}</p>
-
-      {tour.descripcion_larga ? (
-        <p className="mt-4 whitespace-pre-line text-slate-500">
-          {tour.descripcion_larga}
-        </p>
-      ) : null}
-
-      {tour.incluye?.length ? (
-        <>
-          <h2 className="mt-10 font-display text-xl text-fjord-900">
-            Incluye
-          </h2>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-600">
-            {tour.incluye.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </>
-      ) : null}
-
-      <div className="mt-10 flex flex-wrap gap-4">
-        <a
-          href="/contacto"
-          className="inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
-        >
-          Reservar este tour
-        </a>
-        {tour.pdf_folleto ? (
+        <div className="mt-10 flex flex-wrap gap-4">
           <a
-            href={tour.pdf_folleto}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-sm border border-fjord-900 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-fjord-900 hover:text-ice-50"
+            href="/contacto"
+            className="inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
           >
-            Descargar programa (PDF)
+            Reservar este tour
           </a>
-        ) : null}
+          {tour.pdf_folleto ? (
+            <a
+              href={tour.pdf_folleto}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-sm border border-fjord-900 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-fjord-900 hover:text-ice-50"
+            >
+              Descargar programa (PDF)
+            </a>
+          ) : null}
+        </div>
       </div>
     </article>
   );

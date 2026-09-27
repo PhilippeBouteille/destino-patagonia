@@ -43,9 +43,9 @@ export default async function LocaleTourPage({
   const incluye = pickArrayField(tour, "incluye", locale);
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
+    <article>
       {tour.fotos?.[0] ? (
-        <div className="relative mb-8 h-72 w-full overflow-hidden rounded-sm sm:h-96">
+        <div className="relative h-[45vh] w-full overflow-hidden sm:h-[60vh]">
           <Image
             src={tour.fotos[0]}
             alt={pickField(tour, "nombre", locale)}
@@ -56,82 +56,84 @@ export default async function LocaleTourPage({
         </div>
       ) : null}
 
-      <div className="flex items-center gap-3">
-        {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
-            <Image
-              src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
-              alt=""
-              width={30}
-              height={30}
-            />
-          </span>
+      <div className="mx-auto max-w-3xl px-6 py-16">
+        <div className="flex items-center gap-3">
+          {ICONOS_CATEGORIA[tour.categoria ?? ""] ? (
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fjord-900">
+              <Image
+                src={ICONOS_CATEGORIA[tour.categoria ?? ""]}
+                alt=""
+                width={30}
+                height={30}
+              />
+            </span>
+          ) : null}
+          <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
+            {tour.categoria}
+          </p>
+        </div>
+        <h1 className="mt-2 font-display text-3xl text-fjord-900 sm:text-4xl">
+          {pickField(tour, "nombre", locale)}
+        </h1>
+
+        <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-fjord-700">
+          <div>
+            <dt className="text-rock-600">{t(locale, "duracion")}</dt>
+            <dd>{pickField(tour, "duracion", locale)}</dd>
+          </div>
+          <div>
+            <dt className="text-rock-600">{t(locale, "temporada")}</dt>
+            <dd>
+              {tour.temporada_ini} – {tour.temporada_fin}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-rock-600">{t(locale, "desde")}</dt>
+            <dd>{tour.precio_desde?.toLocaleString("es-CL")} CLP</dd>
+          </div>
+        </dl>
+
+        <p className="mt-8 text-lg text-slate-600">
+          {pickField(tour, "descripcion_corta", locale)}
+        </p>
+
+        {pickField(tour, "descripcion_larga", locale) ? (
+          <p className="mt-4 whitespace-pre-line text-slate-500">
+            {pickField(tour, "descripcion_larga", locale)}
+          </p>
         ) : null}
-        <p className="font-mono text-xs uppercase tracking-wide text-rock-600">
-          {tour.categoria}
-        </p>
-      </div>
-      <h1 className="mt-2 font-display text-3xl text-fjord-900 sm:text-4xl">
-        {pickField(tour, "nombre", locale)}
-      </h1>
 
-      <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-fjord-700">
-        <div>
-          <dt className="text-rock-600">{t(locale, "duracion")}</dt>
-          <dd>{pickField(tour, "duracion", locale)}</dd>
-        </div>
-        <div>
-          <dt className="text-rock-600">{t(locale, "temporada")}</dt>
-          <dd>
-            {tour.temporada_ini} – {tour.temporada_fin}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-rock-600">{t(locale, "desde")}</dt>
-          <dd>{tour.precio_desde?.toLocaleString("es-CL")} CLP</dd>
-        </div>
-      </dl>
+        {incluye.length ? (
+          <>
+            <h2 className="mt-10 font-display text-xl text-fjord-900">
+              {t(locale, "incluye")}
+            </h2>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-600">
+              {incluye.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
 
-      <p className="mt-8 text-lg text-slate-600">
-        {pickField(tour, "descripcion_corta", locale)}
-      </p>
-
-      {pickField(tour, "descripcion_larga", locale) ? (
-        <p className="mt-4 whitespace-pre-line text-slate-500">
-          {pickField(tour, "descripcion_larga", locale)}
-        </p>
-      ) : null}
-
-      {incluye.length ? (
-        <>
-          <h2 className="mt-10 font-display text-xl text-fjord-900">
-            {t(locale, "incluye")}
-          </h2>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-600">
-            {incluye.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </>
-      ) : null}
-
-      <div className="mt-10 flex flex-wrap gap-4">
-        <a
-          href={`/${locale}/contacto`}
-          className="inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
-        >
-          {t(locale, "reservar")}
-        </a>
-        {tour.pdf_folleto ? (
+        <div className="mt-10 flex flex-wrap gap-4">
           <a
-            href={tour.pdf_folleto}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-sm border border-fjord-900 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-fjord-900 hover:text-ice-50"
+            href={`/${locale}/contacto`}
+            className="inline-block rounded-sm bg-fjord-900 px-6 py-3 font-body font-medium text-ice-50 transition hover:bg-fjord-700"
           >
-            {t(locale, "descargar_pdf")}
+            {t(locale, "reservar")}
           </a>
-        ) : null}
+          {tour.pdf_folleto ? (
+            <a
+              href={tour.pdf_folleto}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-sm border border-fjord-900 px-6 py-3 font-body font-medium text-fjord-900 transition hover:bg-fjord-900 hover:text-ice-50"
+            >
+              {t(locale, "descargar_pdf")}
+            </a>
+          ) : null}
+        </div>
       </div>
     </article>
   );
