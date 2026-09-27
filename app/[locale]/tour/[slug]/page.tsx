@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
 import { ICONOS_CATEGORIA } from "@/lib/icons";
 import { pickField, pickArrayField, t, type Locale } from "@/lib/i18n";
+import { tourHeroFocus } from "@/lib/tourHeroFocus";
 
 export const revalidate = 3600;
 
@@ -45,11 +46,12 @@ export default async function LocaleTourPage({
   return (
     <article>
       {tour.fotos?.[0] ? (
-        <div className="has-hero relative w-full">
+        <div className="has-hero relative h-[45vh] w-full overflow-hidden sm:h-[60vh]">
           <img
             src={tour.fotos[0]}
             alt={pickField(tour, "nombre", locale)}
-            className="h-auto w-full"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: tourHeroFocus(tour.slug) }}
           />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent" />
         </div>
