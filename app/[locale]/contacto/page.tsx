@@ -21,17 +21,15 @@ export default async function LocaleContactoPage({
     .single<InfoGeneral>();
 
   return (
-    <section className="has-hero relative flex h-screen items-end overflow-hidden px-6 pb-16 pt-24 text-ice-50 sm:pb-24">
+    <section className="has-hero relative flex h-screen items-end overflow-hidden px-6 pb-24 pt-24 text-ice-50 sm:pb-32">
       <ParallaxImage
         src="/images/contacto-hero.jpg"
         alt="Contacto Destino Patagonia"
       />
       <div className="absolute inset-0 z-[2] bg-fjord-900/55" />
       <div className="relative z-[3] mx-auto max-w-2xl">
-        <h1 className="font-display text-4xl sm:text-5xl">
-          {t(locale, "nav_contacto")}
-        </h1>
-        <p className="mt-4 max-w-xl text-lg text-ice-100">
+        <h1 className="sr-only">{t(locale, "nav_contacto")}</h1>
+        <p className="max-w-xl text-lg text-ice-100">
           {t(locale, "contacto_intro")}
         </p>
 

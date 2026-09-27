@@ -36,7 +36,18 @@ const EQUIPO: {
   },
 ];
 
-export default function EquipoConocenos({ locale = "es" }: { locale?: Locale }) {
+export default function EquipoConocenos({
+  locale = "es",
+  dark = false,
+}: {
+  locale?: Locale;
+  dark?: boolean;
+}) {
+  const nombreColor = dark ? "text-ice-50" : "text-fjord-900";
+  const textoColor = dark ? "text-ice-100" : "text-slate-600";
+  const pendienteColor = dark ? "text-ice-100/70" : "text-slate-500";
+  const placeholderBg = dark ? "bg-fjord-700" : "bg-ice-100";
+
   return (
     <section className="mx-auto max-w-5xl px-6 pb-16">
       <div className="space-y-12">
@@ -53,7 +64,9 @@ export default function EquipoConocenos({ locale = "es" }: { locale?: Locale }) 
                 invertido ? "sm:flex-row-reverse" : "sm:flex-row"
               }`}
             >
-              <div className="relative h-72 w-full shrink-0 overflow-hidden rounded-2xl bg-ice-100 sm:h-80 sm:w-1/2">
+              <div
+                className={`relative h-72 w-full shrink-0 overflow-hidden rounded-2xl sm:h-80 sm:w-1/2 ${placeholderBg}`}
+              >
                 <Image
                   src={persona.foto}
                   alt={persona.nombre}
@@ -62,12 +75,12 @@ export default function EquipoConocenos({ locale = "es" }: { locale?: Locale }) 
                 />
               </div>
               <div className="sm:w-1/2">
-                <h3 className="font-display text-lg text-fjord-900">
+                <h3 className={`font-display text-lg ${nombreColor}`}>
                   {persona.nombre}
                 </h3>
                 <p
                   className={`mt-2 whitespace-pre-line text-sm ${
-                    esPendiente ? "italic text-slate-500" : "text-slate-600"
+                    esPendiente ? `italic ${pendienteColor}` : textoColor
                   }`}
                 >
                   {texto}
