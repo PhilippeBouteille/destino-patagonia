@@ -57,7 +57,7 @@ export default async function InicioPage() {
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {tours.map((tour) => (
             <Link key={tour.id} href={`/tour/${tour.slug}`} className="group block">
-              <div className="relative aspect-[3/5] w-full overflow-hidden rounded-sm bg-fjord-700">
+              <div className="relative aspect-[2/5] w-full overflow-hidden rounded-sm bg-fjord-700">
                 {tour.fotos?.[0] ? (
                   <Image
                     src={tour.fotos[0]}

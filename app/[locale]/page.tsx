@@ -66,7 +66,7 @@ export default async function LocaleInicioPage({
               href={`/${locale}/tour/${tour.slug}`}
               className="group block"
             >
-              <div className="relative aspect-[3/5] w-full overflow-hidden rounded-sm bg-fjord-700">
+              <div className="relative aspect-[2/5] w-full overflow-hidden rounded-sm bg-fjord-700">
                 {tour.fotos?.[0] ? (
                   <Image
                     src={tour.fotos[0]}
