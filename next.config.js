@@ -9,6 +9,21 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async headers() {
+    // Vidéo du hero : cache 7 jours (le nom de fichier ne change pas quand on
+    // remplace la vidéo, donc pas d'"immutable" ni d'un an).
+    return [
+      {
+        source: "/videos/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     // /aventuras renommé en /programas (sept. 2026) — redirection permanente
     // pour les liens déjà indexés/partagés vers l'ancienne URL.
