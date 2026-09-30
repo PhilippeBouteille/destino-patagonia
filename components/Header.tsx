@@ -102,23 +102,23 @@ export default function Header({ locale }: { locale: Locale }) {
       {open ? (
         <nav
           aria-label="Mobile navigation"
-          className="header-mobile-panel fixed inset-x-0 top-[120px] bottom-0 z-40 overflow-y-auto border-t border-fjord-900/10 bg-ice-50 px-6 py-4 text-fjord-900 md:hidden"
+          className="header-mobile-panel fixed inset-x-0 top-[120px] z-40 max-h-[calc(100vh-120px)] overflow-y-auto border-t border-fjord-900/10 bg-ice-50 px-6 py-3 text-fjord-900 shadow-lg md:hidden"
         >
-          <ul className="flex flex-col gap-4 text-base font-body uppercase tracking-wide">
+          <ul className="flex flex-col text-sm font-body uppercase tracking-wide">
             {NAV_ITEMS.map((item) => (
               <li key={item.key}>
                 <Link
                   href={`${prefix}${item.path}` || "/"}
                   onClick={() => setOpen(false)}
-                  className="block py-1 transition-colors hover:text-glacier-400"
+                  className="block py-2.5 transition-colors hover:text-glacier-400"
                 >
                   {t(locale, item.key)}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-5 border-t border-white/10 pt-4">
-            <LanguageSwitcher locale={locale} />
+          <div className="mt-2 border-t border-fjord-900/15 pt-4 pb-1">
+            <LanguageSwitcher locale={locale} variant="boxes" />
           </div>
         </nav>
       ) : null}

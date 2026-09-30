@@ -15,12 +15,44 @@ function withoutLocalePrefix(pathname: string): string {
 export default function LanguageSwitcher({
   locale,
   className = "",
+  variant = "text",
 }: {
   locale: Locale;
   className?: string;
+  /** "boxes" : boutons encadrés, langue active remplie (menu mobile). */
+  variant?: "text" | "boxes";
 }) {
   const pathname = usePathname();
   const basePath = withoutLocalePrefix(pathname);
+
+  if (variant === "boxes") {
+    const items: { l: Locale; href: string }[] = [
+      { l: "es", href: basePath },
+      ...LOCALES.map((l) => ({
+        l,
+        href: `/${l}${basePath === "/" ? "" : basePath}`,
+      })),
+    ];
+    return (
+      <ul className={`flex gap-2 font-mono text-xs ${className}`}>
+        {items.map(({ l, href }) => (
+          <li key={l}>
+            <Link
+              href={href}
+              aria-current={locale === l ? "true" : undefined}
+              className={`block rounded-sm border px-3 py-1.5 font-medium uppercase tracking-wide transition-colors ${
+                locale === l
+                  ? "border-glacier-400 bg-glacier-400 text-fjord-900"
+                  : "border-fjord-900/25 text-fjord-900 hover:border-glacier-400 hover:text-glacier-400"
+              }`}
+            >
+              {LOCALE_LABEL[l]}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   return (
     <ul className={`flex gap-2 font-mono text-xs ${className}`}>
