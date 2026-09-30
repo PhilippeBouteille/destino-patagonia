@@ -24,10 +24,10 @@ import type { Locale } from "@/lib/i18n";
 
 const FEED_ID = process.env.NEXT_PUBLIC_BEHOLD_FEED_ID ?? "";
 
-const TEXT: Record<Locale, { titulo: string; ver: string }> = {
-  es: { titulo: "Síguenos en Instagram", ver: "Ver perfil" },
-  en: { titulo: "Follow us on Instagram", ver: "View profile" },
-  fr: { titulo: "Suivez-nous sur Instagram", ver: "Voir le profil" },
+const TEXT: Record<Locale, { titulo: string }> = {
+  es: { titulo: "Síguenos en Instagram" },
+  en: { titulo: "Follow us on Instagram" },
+  fr: { titulo: "Suivez-nous sur Instagram" },
 };
 
 function InstagramIcon() {
@@ -49,27 +49,22 @@ export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
 
   return (
     <section className="py-16">
-      {/* En-tête aligné sur les bords du widget (pleine largeur) : icône +
-          titre à gauche, lien à droite, même marge que les photos. */}
-      <div className="flex items-center justify-between px-3 sm:px-4">
-        <h2 className="flex items-center gap-3 font-display text-2xl text-fjord-900">
-          <InstagramIcon />
-          {t.titulo}
-        </h2>
+      {/* Titre et widget partagent le même conteneur : le bord gauche du
+          logo est donc aligné sur le bord gauche des photos. Le titre
+          renvoie directement vers le profil. */}
+      <div className="mx-auto w-full max-w-[992px] px-4">
         <a
           href="https://www.instagram.com/destinopatagonia/"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-xs uppercase tracking-wide text-fjord-700 hover:text-glacier-400"
+          className="inline-flex items-center gap-3 font-display text-2xl text-fjord-900 hover:text-fjord-700"
         >
-          {t.ver} →
+          <InstagramIcon />
+          {t.titulo}
         </a>
-      </div>
-      {/* Widget pleine largeur : la section n'a plus de conteneur max-w,
-          seul le titre est centré dans max-w-6xl. La largeur maximale du
-          widget se règle aussi dans le dashboard Behold. */}
-      <div className="mt-8 min-h-[200px] w-full">
-        <BeholdWidget feedId={FEED_ID} />
+        <div className="mt-8 min-h-[200px] w-full">
+          <BeholdWidget feedId={FEED_ID} />
+        </div>
       </div>
     </section>
   );
