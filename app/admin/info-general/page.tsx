@@ -18,7 +18,16 @@ export default async function InfoGeneralPage() {
         Información general
       </h1>
       <form action={updateInfoGeneral} className="mt-8 space-y-5">
-        <Field label="Teléfono" name="telefono" defaultValue={data?.telefono ?? ""} />
+        <Field
+          label="Teléfono oficina"
+          name="telefono"
+          defaultValue={data?.telefono ?? ""}
+        />
+        <Field
+          label="Teléfono contacto"
+          name="telefono_contacto"
+          defaultValue={data?.telefono_contacto ?? ""}
+        />
         <Field label="Email" name="email" defaultValue={data?.email ?? ""} />
         <Field
           label="Dirección"

@@ -3,6 +3,7 @@ import type { InfoGeneral } from "@/lib/types";
 import { whatsappLink } from "@/lib/whatsapp";
 import { googleMapsLink } from "@/lib/googleMaps";
 import ParallaxImage from "@/components/ParallaxImage";
+import { PhoneIcon, MailIcon, PinIcon } from "@/components/ContactIcons";
 
 export const revalidate = 3600;
 
@@ -31,11 +32,12 @@ export default async function ContactoPage() {
           Escríbenos para reservar tu aventura o coordinar un viaje especial.
         </p>
 
-        <dl className="mt-10 space-y-4 font-mono text-sm">
+        <dl className="mt-10 space-y-5 font-mono text-sm">
           {data?.telefono ? (
             <div>
-              <dt className="text-glacier-200">Teléfono</dt>
-              <dd>
+              <dt className="text-glacier-200">Oficina</dt>
+              <dd className="mt-1 flex items-center gap-3">
+                <PhoneIcon />
                 <a
                   href={whatsappLink(data.telefono)}
                   target="_blank"
@@ -47,10 +49,27 @@ export default async function ContactoPage() {
               </dd>
             </div>
           ) : null}
+          {data?.telefono_contacto ? (
+            <div>
+              <dt className="text-glacier-200">Contacto</dt>
+              <dd className="mt-1 flex items-center gap-3">
+                <PhoneIcon />
+                <a
+                  href={whatsappLink(data.telefono_contacto)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-glacier-400"
+                >
+                  {data.telefono_contacto}
+                </a>
+              </dd>
+            </div>
+          ) : null}
           {data?.email ? (
             <div>
               <dt className="text-glacier-200">Email</dt>
-              <dd>
+              <dd className="mt-1 flex items-center gap-3">
+                <MailIcon />
                 <a
                   href={`mailto:${data.email}`}
                   className="hover:text-glacier-400"
@@ -63,7 +82,8 @@ export default async function ContactoPage() {
           {data?.direccion ? (
             <div>
               <dt className="text-glacier-200">Dirección</dt>
-              <dd>
+              <dd className="mt-1 flex items-center gap-3">
+                <PinIcon />
                 <a
                   href={googleMapsLink(data.direccion)}
                   target="_blank"

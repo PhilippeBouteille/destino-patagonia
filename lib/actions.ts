@@ -63,6 +63,7 @@ export async function updateInfoGeneral(formData: FormData) {
 
   const payload = {
     telefono: String(formData.get("telefono") ?? ""),
+    telefono_contacto: String(formData.get("telefono_contacto") ?? ""),
     direccion: String(formData.get("direccion") ?? ""),
     email: String(formData.get("email") ?? ""),
     anios_experiencia: Number(formData.get("anios_experiencia") ?? 0),

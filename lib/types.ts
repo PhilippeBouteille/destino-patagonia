@@ -31,6 +31,7 @@ export type Tour = {
 export type InfoGeneral = {
   id: 1;
   telefono: string | null;
+  telefono_contacto?: string | null;
   direccion: string | null;
   email: string | null;
   redes_sociales: { facebook?: string; instagram?: string };

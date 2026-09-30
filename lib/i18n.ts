@@ -25,6 +25,8 @@ type DictKey =
   | "ver_detalle"
   | "contacto_intro"
   | "telefono"
+  | "telefono_oficina"
+  | "telefono_contacto"
   | "email"
   | "direccion"
   | "cookie_banner_text"
@@ -70,6 +72,8 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     ver_detalle: "Ver programa",
     contacto_intro: "Escríbenos para reservar tu aventura o coordinar un viaje especial.",
     telefono: "Teléfono",
+    telefono_oficina: "Oficina",
+    telefono_contacto: "Contacto",
     email: "Email",
     direccion: "Dirección",
     cookie_banner_text:
@@ -120,6 +124,8 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     ver_detalle: "View program",
     contacto_intro: "Write to us to book your adventure or arrange a special trip.",
     telefono: "Phone",
+    telefono_oficina: "Office",
+    telefono_contacto: "Contact",
     email: "Email",
     direccion: "Address",
     cookie_banner_text:
@@ -170,6 +176,8 @@ const dict: Record<Locale, Record<DictKey, string>> = {
     ver_detalle: "Voir le programme",
     contacto_intro: "Écrivez-nous pour réserver votre aventure ou organiser un voyage spécial.",
     telefono: "Téléphone",
+    telefono_oficina: "Bureau",
+    telefono_contacto: "Contact",
     email: "Email",
     direccion: "Adresse",
     cookie_banner_text:
