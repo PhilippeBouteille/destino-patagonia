@@ -36,8 +36,8 @@ export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
   const t = TEXT[locale];
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16">
-      <div className="flex items-center justify-between">
+    <section className="py-16">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
         <h2 className="font-display text-2xl text-fjord-900">{t.titulo}</h2>
         <a
           href="https://www.instagram.com/destinopatagonia/"
@@ -48,7 +48,10 @@ export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
           {t.ver} →
         </a>
       </div>
-      <div className="mt-8 min-h-[200px]">
+      {/* Widget pleine largeur : la section n'a plus de conteneur max-w,
+          seul le titre est centré dans max-w-6xl. La largeur maximale du
+          widget se règle aussi dans le dashboard Behold. */}
+      <div className="mt-8 min-h-[200px] w-full">
         <BeholdWidget feedId={FEED_ID} />
       </div>
     </section>
