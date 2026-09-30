@@ -64,6 +64,7 @@ export default async function LocaleInicioPage({
             tours={tours}
             locale={locale}
             basePath={`/${locale}/tour`}
+            defaultSlug="kayak-a-laguna-san-rafael"
           />
         </div>
       </section>

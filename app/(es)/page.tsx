@@ -55,7 +55,11 @@ export default async function InicioPage() {
           Nuestros programas
         </h2>
         <div className="mt-8">
-          <ProgramasAccordion tours={tours} basePath="/tour" />
+          <ProgramasAccordion
+            tours={tours}
+            basePath="/tour"
+            defaultSlug="kayak-a-laguna-san-rafael"
+          />
         </div>
       </section>
 

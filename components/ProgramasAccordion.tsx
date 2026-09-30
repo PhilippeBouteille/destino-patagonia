@@ -17,12 +17,18 @@ export default function ProgramasAccordion({
   tours,
   locale = "es",
   basePath = "/tour",
+  defaultSlug,
 }: {
   tours: Tour[];
   locale?: Locale;
   basePath?: string;
+  /** Slug du tour déplié au chargement ; à défaut, le premier de la liste. */
+  defaultSlug?: string;
 }) {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(() => {
+    const i = defaultSlug ? tours.findIndex((t) => t.slug === defaultSlug) : -1;
+    return i >= 0 ? i : 0;
+  });
 
   function toggle(index: number) {
     setActive(index);
