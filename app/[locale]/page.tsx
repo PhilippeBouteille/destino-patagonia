@@ -71,16 +71,18 @@ export default async function LocaleInicioPage({
 
       <RouteDivider className="text-fjord-400" />
 
-      <ServiciosBandeau locale={locale} />
-
-      <RouteDivider className="text-fjord-400" />
-
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-display text-2xl text-fjord-900">
           {t(locale, "postales")}
         </h2>
         <PostalesGalerie altPrefix="Destino Patagonia" />
       </section>
+
+      <RouteDivider className="text-fjord-400" />
+
+      <ServiciosBandeau locale={locale} />
+
+      <RouteDivider className="text-fjord-400" />
 
       <InstagramFeed locale={locale} />
     </>

@@ -65,16 +65,18 @@ export default async function InicioPage() {
 
       <RouteDivider className="text-fjord-400" />
 
-      <ServiciosBandeau locale="es" />
-
-      <RouteDivider className="text-fjord-400" />
-
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-display text-2xl text-fjord-900">
           Postales de nuestras aventuras
         </h2>
         <PostalesGalerie altPrefix="Aventura Destino Patagonia" />
       </section>
+
+      <RouteDivider className="text-fjord-400" />
+
+      <ServiciosBandeau locale="es" />
+
+      <RouteDivider className="text-fjord-400" />
 
       <InstagramFeed />
     </>
