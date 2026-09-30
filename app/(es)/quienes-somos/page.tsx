@@ -25,7 +25,7 @@ export default async function QuienesSomosPage() {
         pagina={pagina}
         accordion
         showTitle={false}
-        indices={[1, 2, 3]}
+        indices={[2, 3]}
         dark
       />
     </div>

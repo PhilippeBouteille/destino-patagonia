@@ -28,7 +28,7 @@ export default async function LocaleQuienesSomosPage({
         locale={params.locale}
         accordion
         showTitle={false}
-        indices={[1, 2, 3]}
+        indices={[2, 3]}
         dark
       />
     </div>

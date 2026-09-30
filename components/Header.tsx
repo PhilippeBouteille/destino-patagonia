@@ -34,6 +34,7 @@ export default function Header({ locale }: { locale: Locale }) {
   }, []);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 text-fjord-900 shadow-md transition-colors duration-300 ${
         // Le menu mobile ouvert reste toujours plein, même sur une page avec photo
@@ -95,7 +96,9 @@ export default function Header({ locale }: { locale: Locale }) {
         </button>
       </div>
 
-      {/* Panneau de navigation mobile */}
+    </header>
+
+    {/* Panneau de navigation mobile */}
       {open ? (
         <nav
           aria-label="Mobile navigation"
@@ -119,6 +122,6 @@ export default function Header({ locale }: { locale: Locale }) {
           </div>
         </nav>
       ) : null}
-    </header>
+    </>
   );
 }

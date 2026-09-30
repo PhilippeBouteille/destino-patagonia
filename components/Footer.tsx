@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
-import type { Locale } from "@/lib/i18n";
+import { t, type Locale } from "@/lib/i18n";
 import { whatsappLink } from "@/lib/whatsapp";
 
 const COPYRIGHT_PREFIX: Record<Locale, string> = {
@@ -52,7 +52,10 @@ export default async function Footer({ locale }: { locale: Locale }) {
             </p>
 
             <div className="mt-4 flex flex-col items-center gap-2 font-mono text-xs sm:items-start">
-              {[data?.telefono, data?.telefono_contacto].map((tel) =>
+              {[
+                [t(locale, "telefono_oficina"), data?.telefono],
+                [t(locale, "telefono_contacto"), data?.telefono_contacto],
+              ].map(([label, tel]) =>
                 tel ? (
                   <a
                     key={tel}
@@ -64,6 +67,7 @@ export default async function Footer({ locale }: { locale: Locale }) {
                     <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                     <path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4C7.1 4 3.08 8 3.08 12.94c0 1.74.5 3.4 1.4 4.84L3 21l3.32-1.42a8.94 8.94 0 0 0 5.73 2.03c4.94 0 8.96-4 8.96-8.94a8.86 8.86 0 0 0-3.41-6.35zM12.06 19.6c-1.7 0-3.32-.5-4.7-1.42l-.33-.2-2.6 1.12.7-2.6-.22-.34a7.5 7.5 0 0 1-1.16-4c0-4.13 3.36-7.5 7.51-7.5 2 0 3.88.79 5.3 2.2a7.43 7.43 0 0 1 2.2 5.3c0 4.13-3.37 7.44-7.7 7.44zm4.1-5.6c-.22-.11-1.32-.65-1.53-.73-.2-.08-.35-.11-.5.11-.15.22-.57.73-.7.88-.13.15-.26.16-.48.05-.22-.1-.93-.34-1.77-1.1-.65-.58-1.1-1.3-1.22-1.52-.13-.22-.01-.34.1-.45.1-.11.22-.28.34-.42.11-.14.15-.24.22-.4.07-.16.04-.3-.02-.42-.07-.11-.6-1.46-.83-2-.22-.52-.45-.45-.62-.46h-.53c-.18 0-.46.07-.7.34-.24.27-.93.91-.93 2.21 0 1.3.95 2.55 1.08 2.73.13.18 1.79 2.74 4.33 3.73 2.55 1 2.55.66 3.01.62.46-.04 1.5-.6 1.71-1.19.21-.58.21-1.08.15-1.19-.06-.1-.22-.16-.45-.27z"/>
                   </svg>
+                    <span className="text-glacier-200">{label}</span>
                     {tel}
                   </a>
                 ) : null
