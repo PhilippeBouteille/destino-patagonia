@@ -48,7 +48,7 @@ export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
   const t = TEXT[locale];
 
   return (
-    <section className="py-8 md:py-16">
+    <section className="pb-5 pt-8 md:py-16">
       {/* Titre et widget partagent le même conteneur : le bord gauche du
           logo est donc aligné sur le bord gauche des photos. Le titre
           renvoie directement vers le profil. */}
