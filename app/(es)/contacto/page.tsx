@@ -1,10 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import type { InfoGeneral } from "@/lib/types";
-import { whatsappLink } from "@/lib/whatsapp";
-import { googleMapsLink } from "@/lib/googleMaps";
-import ParallaxImage from "@/components/ParallaxImage";
-import { PhoneIcon, MailIcon, PinIcon } from "@/components/ContactIcons";
-import { CONDICIONES_CONTENT, CONDICIONES_SLUG } from "@/lib/condicionesReserva";
+import ContactoDetalles from "@/components/ContactoDetalles";
 
 export const revalidate = 3600;
 
@@ -21,92 +17,18 @@ export default async function ContactoPage() {
     .single<InfoGeneral>();
 
   return (
-    <section className="has-hero relative flex h-screen items-end overflow-hidden px-6 pb-24 pt-24 text-ice-50 sm:pb-32">
-      <ParallaxImage
-        src="/images/contacto-hero.jpg"
-        alt="Contacto Destino Patagonia"
-      />
-      <div className="absolute inset-0 z-[2] bg-fjord-900/55" />
-      <div className="relative z-[3] mx-auto max-w-2xl">
-        <h1 className="sr-only">Contacto</h1>
-        <p className="max-w-xl text-lg text-ice-100">
-          Escríbenos para reservar tu aventura o coordinar un viaje especial.
-        </p>
-
-        <dl className="mt-10 space-y-5 font-mono text-sm">
-          {data?.telefono ? (
-            <div>
-              <dt className="text-glacier-200">Oficina</dt>
-              <dd className="mt-1 flex items-center gap-3">
-                <PhoneIcon />
-                <a
-                  href={whatsappLink(data.telefono)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-glacier-400"
-                >
-                  {data.telefono}
-                </a>
-              </dd>
-            </div>
-          ) : null}
-          {data?.telefono_contacto ? (
-            <div>
-              <dt className="text-glacier-200">Contacto</dt>
-              <dd className="mt-1 flex items-center gap-3">
-                <PhoneIcon />
-                <a
-                  href={whatsappLink(data.telefono_contacto)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-glacier-400"
-                >
-                  {data.telefono_contacto}
-                </a>
-              </dd>
-            </div>
-          ) : null}
-          {data?.email ? (
-            <div>
-              <dt className="text-glacier-200">Email</dt>
-              <dd className="mt-1 flex items-center gap-3">
-                <MailIcon />
-                <a
-                  href={`mailto:${data.email}`}
-                  className="hover:text-glacier-400"
-                >
-                  {data.email}
-                </a>
-              </dd>
-            </div>
-          ) : null}
-          {data?.direccion ? (
-            <div>
-              <dt className="text-glacier-200">Dirección</dt>
-              <dd className="mt-1 flex items-center gap-3">
-                <PinIcon />
-                <a
-                  href={googleMapsLink(data.direccion)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-glacier-400"
-                >
-                  {data.direccion}
-                </a>
-              </dd>
-            </div>
-          ) : null}
-        </dl>
-
-        <p className="mt-10 font-mono text-sm">
-          <a
-            href={`/${CONDICIONES_SLUG}`}
-            className="text-glacier-200 underline underline-offset-4 hover:text-glacier-400"
-          >
-            {CONDICIONES_CONTENT.es.link}
-          </a>
-        </p>
+    <>
+      <div className="has-hero relative h-screen w-full overflow-hidden">
+        <img
+          src="/images/contacto-hero-glaciar.jpg"
+          alt="Glaciar frente a un campo de témpanos, Laguna San Rafael"
+          className="h-full w-full object-cover"
+        />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent" />
       </div>
-    </section>
+      <div className="bg-fjord-900">
+        <ContactoDetalles locale="es" data={data} />
+      </div>
+    </>
   );
 }
