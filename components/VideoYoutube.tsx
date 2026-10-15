@@ -11,12 +11,15 @@ import { useState } from "react";
 export default function VideoYoutube({
   videoId,
   title,
+  credit,
   poster,
   playLabel,
   youtubeLabel,
 }: {
   videoId: string;
   title: string;
+  /** Mention de la source, affichée sous la vidéo (ex. chaîne). */
+  credit?: string;
   poster: string;
   playLabel: string;
   youtubeLabel: string;
@@ -57,7 +60,8 @@ export default function VideoYoutube({
         )}
       </div>
       <p className="mt-3 text-sm text-ice-100">
-        {title} ·{" "}
+        {title}
+        {credit ? ` · ${credit}` : ""} ·{" "}
         <a
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"

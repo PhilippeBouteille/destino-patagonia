@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import GaleriaFotos, { type FotoGaleria } from "@/components/GaleriaFotos";
 import { createClient } from "@/lib/supabase/public";
@@ -50,6 +51,7 @@ export function PaginaBloques({
   topClass,
   enlaces,
   fotos,
+  extras,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -102,6 +104,12 @@ export function PaginaBloques({
    * Carrousel de photos affiché sous le texte d'un bloc, indexé comme
    * `enlaces`. Ex. : Iniciativas → photos de Limpieza de Playas.
    */
+  /**
+   * Contenu libre affiché sous le texte d'un bloc (après la galerie, avant
+   * le lien), indexé comme `enlaces`. Ex. : Iniciativas → publications et
+   * vidéo du bloc « Aporte en publicaciones ».
+   */
+  extras?: Record<number, ReactNode>;
   fotos?: Record<
     number,
     { photos: FotoGaleria[]; labels: { prev: string; next: string; close: string } }
@@ -136,6 +144,7 @@ export function PaginaBloques({
           const icono = iconoParaBloque(bloque.titulo);
           const enlace = enlaces?.[todosBloques.indexOf(bloque)];
           const galeria = fotos?.[todosBloques.indexOf(bloque)];
+          const extraEl = extras?.[todosBloques.indexOf(bloque)] ?? null;
           const galeriaEl = galeria ? (
             <div className="mt-6">
               {galeria.photos.length === 1 ? (
@@ -206,6 +215,7 @@ export function PaginaBloques({
                   {bloque.texto}
                 </p>
                 {galeriaEl}
+                {extraEl}
                 {enlaceEl}
               </details>
             );
@@ -216,6 +226,7 @@ export function PaginaBloques({
               {titleRow}
               <p className={`mt-3 ${textoColor}`}>{bloque.texto}</p>
               {galeriaEl}
+              {extraEl}
               {enlaceEl}
             </div>
           );
