@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/public";
 import type { Pagina, BloquePagina } from "@/lib/types";
 import { pickField, type Locale } from "@/lib/i18n";
@@ -46,6 +47,7 @@ export function PaginaBloques({
   maxWidthClass,
   dark = false,
   topClass,
+  enlaces,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -86,6 +88,14 @@ export function PaginaBloques({
    * plus généreux pour ne pas passer sous le header transparent.
    */
   topClass?: string;
+  /**
+   * Lien « en savoir plus » affiché sous le texte d'un bloc, indexé par la
+   * position du bloc dans le tableau `bloques` (même ordre dans toutes les
+   * langues). Posé ici, dans le code de la page, et non dans le texte en
+   * base, pour survivre aux modifications faites depuis l'admin. Ex. :
+   * Iniciativas → sous-page du projet SEI.
+   */
+  enlaces?: Record<number, { href: string; label: string }>;
 }) {
   if (!pagina) return null;
 
@@ -114,6 +124,17 @@ export function PaginaBloques({
       >
         {bloques.map((bloque) => {
           const icono = iconoParaBloque(bloque.titulo);
+          const enlace = enlaces?.[todosBloques.indexOf(bloque)];
+          const enlaceEl = enlace ? (
+            <Link
+              href={enlace.href}
+              className={`mt-4 inline-block font-medium underline-offset-4 hover:underline ${
+                dark ? "text-glacier-200 hover:text-white" : "text-fjord-700"
+              }`}
+            >
+              {enlace.label} →
+            </Link>
+          ) : null;
           const titleRow = (
             <span className="flex items-center gap-4">
               {icono ? (
@@ -146,6 +167,7 @@ export function PaginaBloques({
                 <p className={`mt-3 whitespace-pre-line ${textoColor}`}>
                   {bloque.texto}
                 </p>
+                {enlaceEl}
               </details>
             );
           }
@@ -154,6 +176,7 @@ export function PaginaBloques({
             <div key={bloque.titulo}>
               {titleRow}
               <p className={`mt-3 ${textoColor}`}>{bloque.texto}</p>
+              {enlaceEl}
             </div>
           );
         })}

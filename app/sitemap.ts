@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/logistica",
     "/quienes-somos",
     "/iniciativas",
+    "/iniciativas/sei-viajera-de-los-mares",
     "/contacto",
   ];
   const tourPaths = slugs.map((slug) => `/tour/${slug}`);

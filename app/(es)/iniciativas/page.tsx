@@ -1,4 +1,5 @@
 import { getPagina, PaginaBloques } from "@/components/PaginaBloques";
+import { SEI_LINK_LABEL, SEI_SLUG } from "@/lib/iniciativaSei";
 
 export const revalidate = 3600;
 
@@ -19,7 +20,17 @@ export default async function IniciativasPage() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent" />
       </div>
       <div className="bg-fjord-900">
-        <PaginaBloques pagina={pagina} accordion dark />
+        <PaginaBloques
+          pagina={pagina}
+          accordion
+          dark
+          enlaces={{
+            2: {
+              href: `/iniciativas/${SEI_SLUG}`,
+              label: SEI_LINK_LABEL.es,
+            },
+          }}
+        />
       </div>
     </>
   );
