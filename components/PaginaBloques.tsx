@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GaleriaFotos, { type FotoGaleria } from "@/components/GaleriaFotos";
 import { createClient } from "@/lib/supabase/public";
 import type { Pagina, BloquePagina } from "@/lib/types";
 import { pickField, type Locale } from "@/lib/i18n";
@@ -48,6 +49,7 @@ export function PaginaBloques({
   dark = false,
   topClass,
   enlaces,
+  fotos,
 }: {
   pagina: Pagina | null;
   locale?: Locale;
@@ -96,6 +98,14 @@ export function PaginaBloques({
    * Iniciativas → sous-page du projet SEI.
    */
   enlaces?: Record<number, { href: string; label: string }>;
+  /**
+   * Carrousel de photos affiché sous le texte d'un bloc, indexé comme
+   * `enlaces`. Ex. : Iniciativas → photos de Limpieza de Playas.
+   */
+  fotos?: Record<
+    number,
+    { photos: FotoGaleria[]; labels: { prev: string; next: string; close: string } }
+  >;
 }) {
   if (!pagina) return null;
 
@@ -125,6 +135,12 @@ export function PaginaBloques({
         {bloques.map((bloque) => {
           const icono = iconoParaBloque(bloque.titulo);
           const enlace = enlaces?.[todosBloques.indexOf(bloque)];
+          const galeria = fotos?.[todosBloques.indexOf(bloque)];
+          const galeriaEl = galeria ? (
+            <div className="mt-6">
+              <GaleriaFotos photos={galeria.photos} labels={galeria.labels} />
+            </div>
+          ) : null;
           const enlaceEl = enlace ? (
             <Link
               href={enlace.href}
@@ -167,6 +183,7 @@ export function PaginaBloques({
                 <p className={`mt-3 whitespace-pre-line ${textoColor}`}>
                   {bloque.texto}
                 </p>
+                {galeriaEl}
                 {enlaceEl}
               </details>
             );
@@ -176,6 +193,7 @@ export function PaginaBloques({
             <div key={bloque.titulo}>
               {titleRow}
               <p className={`mt-3 ${textoColor}`}>{bloque.texto}</p>
+              {galeriaEl}
               {enlaceEl}
             </div>
           );
