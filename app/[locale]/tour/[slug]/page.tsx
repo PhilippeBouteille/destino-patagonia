@@ -5,6 +5,7 @@ import type { Tour } from "@/lib/types";
 import { ICONOS_CATEGORIA } from "@/lib/icons";
 import { pickField, pickArrayField, t, type Locale } from "@/lib/i18n";
 import { tourHeroFocus } from "@/lib/tourHeroFocus";
+import { CONDICIONES_CONTENT, CONDICIONES_SLUG } from "@/lib/condicionesReserva";
 
 export const revalidate = 3600;
 
@@ -135,6 +136,14 @@ export default async function LocaleTourPage({
             </a>
           ) : null}
         </div>
+        <p className="mt-4 text-sm text-slate-500">
+          <a
+            href={`/${locale}/${CONDICIONES_SLUG}`}
+            className="underline underline-offset-4 hover:text-fjord-900"
+          >
+            {CONDICIONES_CONTENT[locale].link}
+          </a>
+        </p>
       </div>
     </article>
   );

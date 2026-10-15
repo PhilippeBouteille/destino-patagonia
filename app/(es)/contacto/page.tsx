@@ -4,6 +4,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 import { googleMapsLink } from "@/lib/googleMaps";
 import ParallaxImage from "@/components/ParallaxImage";
 import { PhoneIcon, MailIcon, PinIcon } from "@/components/ContactIcons";
+import { CONDICIONES_CONTENT, CONDICIONES_SLUG } from "@/lib/condicionesReserva";
 
 export const revalidate = 3600;
 
@@ -96,6 +97,15 @@ export default async function ContactoPage() {
             </div>
           ) : null}
         </dl>
+
+        <p className="mt-10 font-mono text-sm">
+          <a
+            href={`/${CONDICIONES_SLUG}`}
+            className="text-glacier-200 underline underline-offset-4 hover:text-glacier-400"
+          >
+            {CONDICIONES_CONTENT.es.link}
+          </a>
+        </p>
       </div>
     </section>
   );

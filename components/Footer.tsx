@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/public";
 import type { InfoGeneral } from "@/lib/types";
-import { t, type Locale } from "@/lib/i18n";
+import { t, localePrefix, type Locale } from "@/lib/i18n";
+import { CONDICIONES_CONTENT, CONDICIONES_SLUG } from "@/lib/condicionesReserva";
 import { whatsappLink } from "@/lib/whatsapp";
 
 const COPYRIGHT_PREFIX: Record<Locale, string> = {
@@ -177,6 +178,14 @@ export default async function Footer({ locale }: { locale: Locale }) {
         <div className="footer-border-soft mt-10 border-t border-white/10 pt-6 text-center">
           <p className="footer-muted font-body text-xs text-ice-100/60">
             {COPYRIGHT_PREFIX[locale]}
+          </p>
+          <p className="mt-1 font-body text-xs">
+            <a
+              href={`${localePrefix(locale)}/${CONDICIONES_SLUG}`}
+              className="footer-muted text-ice-100/60 underline-offset-4 transition hover:text-ice-50 hover:underline"
+            >
+              {CONDICIONES_CONTENT[locale].link}
+            </a>
           </p>
           <p className="footer-faint mt-1 font-mono text-xs uppercase tracking-widest text-ice-100/40">
             Destino Patagonia · Laguna San Rafael · Chile

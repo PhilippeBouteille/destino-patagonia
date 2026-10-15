@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/iniciativas/sei-viajera-de-los-mares",
     "/iniciativas/politica-de-sustentabilidad",
     "/contacto",
+    "/condiciones-de-reserva",
   ];
   const tourPaths = slugs.map((slug) => `/tour/${slug}`);
   const paths = [...staticPaths, ...tourPaths];

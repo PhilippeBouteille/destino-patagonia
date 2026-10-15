@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/public";
 import type { Tour } from "@/lib/types";
 import { ICONOS_CATEGORIA } from "@/lib/icons";
 import { tourHeroFocus } from "@/lib/tourHeroFocus";
+import { CONDICIONES_CONTENT, CONDICIONES_SLUG } from "@/lib/condicionesReserva";
 
 export const revalidate = 3600;
 
@@ -123,6 +124,14 @@ export default async function TourPage({
             </a>
           ) : null}
         </div>
+        <p className="mt-4 text-sm text-slate-500">
+          <a
+            href={`/${CONDICIONES_SLUG}`}
+            className="underline underline-offset-4 hover:text-fjord-900"
+          >
+            {CONDICIONES_CONTENT.es.link}
+          </a>
+        </p>
       </div>
     </article>
   );
