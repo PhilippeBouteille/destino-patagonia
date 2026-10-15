@@ -48,7 +48,7 @@ export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
   const t = TEXT[locale];
 
   return (
-    <section className="pb-5 pt-8 md:py-16">
+    <section className="py-8 md:py-16">
       {/* Titre et widget partagent le même conteneur : le bord gauche du
           logo est donc aligné sur le bord gauche des photos. Le titre
           renvoie directement vers le profil. */}
@@ -62,7 +62,7 @@ export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
           <InstagramIcon />
           {t.titulo}
         </a>
-        <div className="mt-4 min-h-[200px] w-full md:mt-8">
+        <div className="mt-4 min-h-[80px] w-full md:mt-8 md:min-h-[200px]">
           <BeholdWidget feedId={FEED_ID} />
         </div>
       </div>
