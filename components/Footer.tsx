@@ -183,9 +183,9 @@ export default async function Footer({ locale }: { locale: Locale }) {
               className="inline-block opacity-80 transition-opacity hover:opacity-100"
             >
               <Image
-                src="/images/sernatur-registro.webp"
+                src="/images/sernatur-logo-r.webp"
                 alt={SERNATUR_ALT[locale]}
-                width={87}
+                width={108}
                 height={108}
                 className="object-contain"
               />
