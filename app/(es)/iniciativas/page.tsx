@@ -1,6 +1,7 @@
 import { getPagina, PaginaBloques } from "@/components/PaginaBloques";
 import { SEI_LINK_LABEL, SEI_SLUG } from "@/lib/iniciativaSei";
 import { limpiezaFotos } from "@/lib/iniciativaLimpieza";
+import { LIBRO_LINK_LABEL, LIBRO_URL, libroFoto } from "@/lib/iniciativaLibro";
 
 export const revalidate = 3600;
 
@@ -25,8 +26,9 @@ export default async function IniciativasPage() {
           pagina={pagina}
           accordion
           dark
-          fotos={{ 1: limpiezaFotos("es") }}
+          fotos={{ 1: limpiezaFotos("es"), 3: libroFoto("es") }}
           enlaces={{
+            3: { href: LIBRO_URL, label: LIBRO_LINK_LABEL.es, externo: true },
             2: {
               href: `/iniciativas/${SEI_SLUG}`,
               label: SEI_LINK_LABEL.es,

@@ -97,7 +97,7 @@ export function PaginaBloques({
    * base, pour survivre aux modifications faites depuis l'admin. Ex. :
    * Iniciativas → sous-page du projet SEI.
    */
-  enlaces?: Record<number, { href: string; label: string }>;
+  enlaces?: Record<number, { href: string; label: string; externo?: boolean }>;
   /**
    * Carrousel de photos affiché sous le texte d'un bloc, indexé comme
    * `enlaces`. Ex. : Iniciativas → photos de Limpieza de Playas.
@@ -138,18 +138,40 @@ export function PaginaBloques({
           const galeria = fotos?.[todosBloques.indexOf(bloque)];
           const galeriaEl = galeria ? (
             <div className="mt-6">
-              <GaleriaFotos photos={galeria.photos} labels={galeria.labels} />
+              {galeria.photos.length === 1 ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={galeria.photos[0].src}
+                  alt={galeria.photos[0].alt}
+                  width={galeria.photos[0].w}
+                  height={galeria.photos[0].h}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full rounded-sm"
+                />
+              ) : (
+                <GaleriaFotos photos={galeria.photos} labels={galeria.labels} />
+              )}
             </div>
           ) : null;
+          const enlaceClass = `mt-4 inline-block font-medium underline-offset-4 hover:underline ${
+            dark ? "text-glacier-200 hover:text-white" : "text-fjord-700"
+          }`;
           const enlaceEl = enlace ? (
-            <Link
-              href={enlace.href}
-              className={`mt-4 inline-block font-medium underline-offset-4 hover:underline ${
-                dark ? "text-glacier-200 hover:text-white" : "text-fjord-700"
-              }`}
-            >
-              {enlace.label} →
-            </Link>
+            enlace.externo ? (
+              <a
+                href={enlace.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={enlaceClass}
+              >
+                {enlace.label} ↗
+              </a>
+            ) : (
+              <Link href={enlace.href} className={enlaceClass}>
+                {enlace.label} →
+              </Link>
+            )
           ) : null;
           const titleRow = (
             <span className="flex items-center gap-4">

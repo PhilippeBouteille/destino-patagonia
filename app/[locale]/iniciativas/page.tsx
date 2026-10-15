@@ -2,6 +2,7 @@ import { getPagina, PaginaBloques } from "@/components/PaginaBloques";
 import { localePrefix, type Locale } from "@/lib/i18n";
 import { SEI_LINK_LABEL, SEI_SLUG } from "@/lib/iniciativaSei";
 import { limpiezaFotos } from "@/lib/iniciativaLimpieza";
+import { LIBRO_LINK_LABEL, LIBRO_URL, libroFoto } from "@/lib/iniciativaLibro";
 
 export const revalidate = 3600;
 
@@ -27,8 +28,13 @@ export default async function LocaleIniciativasPage({
           locale={params.locale}
           accordion
           dark
-          fotos={{ 1: limpiezaFotos(params.locale) }}
+          fotos={{ 1: limpiezaFotos(params.locale), 3: libroFoto(params.locale) }}
           enlaces={{
+            3: {
+              href: LIBRO_URL,
+              label: LIBRO_LINK_LABEL[params.locale],
+              externo: true,
+            },
             2: {
               href: `${localePrefix(params.locale)}/iniciativas/${SEI_SLUG}`,
               label: SEI_LINK_LABEL[params.locale],
