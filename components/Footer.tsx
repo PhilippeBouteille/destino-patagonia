@@ -5,6 +5,12 @@ import { t, localePrefix, type Locale } from "@/lib/i18n";
 import { CONDICIONES_CONTENT, CONDICIONES_SLUG } from "@/lib/condicionesReserva";
 import { whatsappLink } from "@/lib/whatsapp";
 
+const SERNATUR_ALT: Record<Locale, string> = {
+  es: "Servicio turístico registrado en SERNATUR — ver registro",
+  en: "Tourism service registered with SERNATUR — view registry entry",
+  fr: "Service touristique enregistré auprès de SERNATUR — voir le registre",
+};
+
 const COPYRIGHT_PREFIX: Record<Locale, string> = {
   es: "© 2026 Destino Patagonia. Todos los derechos reservados.",
   en: "© 2026 Destino Patagonia. Todos los derechos reservados.",
@@ -154,18 +160,32 @@ export default async function Footer({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          {/* Logo Ruta de los Parques */}
-          <div className="shrink-0">
+          {/* Logos : Ruta de los Parques + registro SERNATUR */}
+          <div className="flex shrink-0 items-center justify-center gap-6 sm:justify-start">
             <a
               href="https://rutadelosparques.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="mx-auto inline-block opacity-80 transition-opacity hover:opacity-100 sm:mx-0"
+              className="inline-block opacity-80 transition-opacity hover:opacity-100"
             >
               <Image
                 src="/images/LOGO-ruta-de-los-parques-patagonia-180x161-1.png"
                 alt="Ruta de los Parques de la Patagonia"
                 width={120}
+                height={108}
+                className="object-contain"
+              />
+            </a>
+            <a
+              href="https://serviciosturisticos.sernatur.cl/77253-destino-patagonia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block opacity-80 transition-opacity hover:opacity-100"
+            >
+              <Image
+                src="/images/sernatur-registro.webp"
+                alt={SERNATUR_ALT[locale]}
+                width={87}
                 height={108}
                 className="object-contain"
               />
