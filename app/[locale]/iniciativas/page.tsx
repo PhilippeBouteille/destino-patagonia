@@ -2,6 +2,7 @@ import { getPagina, PaginaBloques } from "@/components/PaginaBloques";
 import { localePrefix, type Locale } from "@/lib/i18n";
 import { SEI_LINK_LABEL, SEI_SLUG } from "@/lib/iniciativaSei";
 import { limpiezaFotos } from "@/lib/iniciativaLimpieza";
+import CompromisoBloque from "@/components/CompromisoBloque";
 import PublicacionesBloque from "@/components/PublicacionesBloque";
 import { LIBRO_LINK_LABEL, LIBRO_URL, libroFoto } from "@/lib/iniciativaLibro";
 
@@ -30,7 +31,10 @@ export default async function LocaleIniciativasPage({
           accordion
           dark
           fotos={{ 1: limpiezaFotos(params.locale), 3: libroFoto(params.locale) }}
-          extras={{ 4: <PublicacionesBloque locale={params.locale} /> }}
+          extras={{
+            0: <CompromisoBloque locale={params.locale} />,
+            4: <PublicacionesBloque locale={params.locale} />,
+          }}
           enlaces={{
             3: {
               href: LIBRO_URL,
