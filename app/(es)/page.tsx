@@ -58,7 +58,7 @@ export default async function InicioPage() {
           <ProgramasAccordion
             tours={tours}
             basePath="/tour"
-            defaultSlug="kayak-a-laguna-san-rafael"
+            defaultSlug="aventura-en-el-fiordo"
           />
         </div>
       </section>
