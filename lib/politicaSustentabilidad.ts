@@ -16,12 +16,11 @@ export const POLITICA_SLUG = "politica-de-sustentabilidad";
 export const CODIGO_PDF = "/docs/codigo-turista-responsable-sernatur.pdf";
 /**
  * Code éthique mondial pour le tourisme (ONU Turismo), pages externes.
- * FR : pas de version française vérifiée, on garde la page espagnole.
  */
 export const CODIGO_ETICO_URL: Record<Locale, string> = {
   es: "https://www.untourism.int/es/codigo-etico-mundial-para-el-turismo",
   en: "https://www.untourism.int/global-code-of-ethics-for-tourism",
-  fr: "https://www.untourism.int/es/codigo-etico-mundial-para-el-turismo",
+  fr: "https://www.untourism.int/fr/code-mondial-d-ethique-du-tourisme",
 };
 
 type PoliticaContent = {
@@ -249,6 +248,6 @@ export const POLITICA_CONTENT: Record<Locale, PoliticaContent> = {
     codigoDescargar: "Télécharger le code (PDF, en espagnol)",
     linkPolitica: "Lire notre politique de durabilité",
     linkCodigo: "Code de conduite du touriste responsable (PDF, en espagnol)",
-    linkCodigoEtico: "Code éthique mondial pour le tourisme (ONU Tourisme, en espagnol)",
+    linkCodigoEtico: "Code mondial d'éthique du tourisme (ONU Tourisme)",
   },
 };
