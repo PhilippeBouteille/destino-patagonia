@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { localePrefix, type Locale } from "@/lib/i18n";
 import {
+  CODIGO_ETICO_URL,
   CODIGO_PDF,
   POLITICA_CONTENT,
   POLITICA_SLUG,
@@ -30,6 +31,16 @@ export default function CompromisoBloque({ locale }: { locale: Locale }) {
           className={linkClass}
         >
           {t.linkCodigo} ↗
+        </a>
+      </li>
+      <li>
+        <a
+          href={CODIGO_ETICO_URL[locale]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+        >
+          {t.linkCodigoEtico} ↗
         </a>
       </li>
     </ul>
