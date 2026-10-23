@@ -8,7 +8,7 @@
  */
 export const TOUR_HERO_FOCUS: Record<string, string> = {
   "laguna-san-rafael-full-day": "center 82%",
-  "vive-san-rafael-kayak": "center 25%",
+  "vive-san-rafael": "center 25%",
 };
 
 export function tourHeroFocus(slug: string): string {

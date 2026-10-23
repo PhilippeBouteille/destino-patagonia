@@ -31,6 +31,12 @@ const nextConfig = {
       { source: "/aventuras", destination: "/programas", permanent: true },
       { source: "/en/aventuras", destination: "/en/programas", permanent: true },
       { source: "/fr/aventuras", destination: "/fr/programas", permanent: true },
+      // Programme Zodiac : le slug « vive-san-rafael-kayak » ne correspond plus
+      // à la sortie (Zodiac, plus kayak) — renommé en « vive-san-rafael » (oct.
+      // 2026), redirection permanente pour les liens déjà indexés/partagés.
+      { source: "/tour/vive-san-rafael-kayak", destination: "/tour/vive-san-rafael", permanent: true },
+      { source: "/en/tour/vive-san-rafael-kayak", destination: "/en/tour/vive-san-rafael", permanent: true },
+      { source: "/fr/tour/vive-san-rafael-kayak", destination: "/fr/tour/vive-san-rafael", permanent: true },
     ];
   },
 };
