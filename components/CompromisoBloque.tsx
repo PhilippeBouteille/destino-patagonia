@@ -35,7 +35,7 @@ export default function CompromisoBloque({ locale }: { locale: Locale }) {
       </li>
       <li>
         <a
-          href={CODIGO_ETICO_URL}
+          href={CODIGO_ETICO_URL[locale]}
           target="_blank"
           rel="noopener noreferrer"
           className={linkClass}
