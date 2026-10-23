@@ -14,6 +14,9 @@ import type { Locale } from "@/lib/i18n";
 
 export const POLITICA_SLUG = "politica-de-sustentabilidad";
 export const CODIGO_PDF = "/docs/codigo-turista-responsable-sernatur.pdf";
+/** Code éthique mondial pour le tourisme (ONU Turismo), page externe en espagnol. */
+export const CODIGO_ETICO_URL =
+  "https://www.untourism.int/es/codigo-etico-mundial-para-el-turismo";
 
 type PoliticaContent = {
   metaTitle: string;
@@ -43,6 +46,7 @@ type PoliticaContent = {
   /** Libellés des deux liens affichés dans le bloc Iniciativas. */
   linkPolitica: string;
   linkCodigo: string;
+  linkCodigoEtico: string;
 };
 
 export const POLITICA_CONTENT: Record<Locale, PoliticaContent> = {
@@ -109,6 +113,7 @@ export const POLITICA_CONTENT: Record<Locale, PoliticaContent> = {
     codigoDescargar: "Descargar el código (PDF)",
     linkPolitica: "Ver nuestra política de sustentabilidad",
     linkCodigo: "Código de conducta del turista responsable (PDF)",
+    linkCodigoEtico: "Código Ético Mundial para el Turismo (ONU Turismo)",
   },
   en: {
     metaTitle: "Sustainability Policy — Destino Patagonia",
@@ -173,6 +178,7 @@ export const POLITICA_CONTENT: Record<Locale, PoliticaContent> = {
     codigoDescargar: "Download the code (PDF, Spanish)",
     linkPolitica: "Read our sustainability policy",
     linkCodigo: "Responsible tourist code of conduct (PDF, Spanish)",
+    linkCodigoEtico: "Global Code of Ethics for Tourism (UN Tourism, in Spanish)",
   },
   fr: {
     metaTitle: "Politique de durabilité — Destino Patagonia",
@@ -237,5 +243,6 @@ export const POLITICA_CONTENT: Record<Locale, PoliticaContent> = {
     codigoDescargar: "Télécharger le code (PDF, en espagnol)",
     linkPolitica: "Lire notre politique de durabilité",
     linkCodigo: "Code de conduite du touriste responsable (PDF, en espagnol)",
+    linkCodigoEtico: "Code éthique mondial pour le tourisme (ONU Tourisme, en espagnol)",
   },
 };
